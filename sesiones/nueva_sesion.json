@@ -1,4 +1,21 @@
 {
-  "_info": "Este archivo es sobreescrito por Claude en cada entrenamiento.",
-  "_placeholder": true
+  "fecha": "2026-06-17",
+  "tipo": "Carrera",
+  "codigo": "E7",
+  "semana": 3,
+  "distancia_km": 7.10,
+  "duracion_min": 35,
+  "ritmo_medio": "4:56",
+  "fc_media": 162,
+  "fc_max": 177,
+  "cadencia_media": 155,
+  "cadencia_max": 163,
+  "oscilacion_vertical": 10.1,
+  "contacto_suelo_ms": 282,
+  "longitud_zancada_m": 1.31,
+  "ratio_vertical": 7.7,
+  "potencia_media_w": 461,
+  "te_aerobico": 3.8,
+  "te_anaerobico": 0.4,
+  "notas": "Series cadencia S3. Carga alta: viaje fin de semana + día trabajo intenso previo. Piernas ok pero FC y respiración exigidas. 51% Z4 · 37% Z3. Cadencia 155 media / 163 máx."
 }
