@@ -25,58 +25,24 @@
   --danger:    #ef4444;
   --goal:      #f97316;
 }
-
-/* ── RESET ───────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-}
-
-/* ── LAYOUT ──────────────────────────────────────────────────────────────── */
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 .shell { max-width: 1200px; margin: 0 auto; padding: 0 16px 48px; }
-
-/* ── HEADER ──────────────────────────────────────────────────────────────── */
-.header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 0 16px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
-}
+.header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
 .header-left h1 { font-size: 1.15rem; font-weight: 700; letter-spacing: .3px; }
 .header-left p  { font-size: .75rem; color: var(--muted); margin-top: 2px; }
-.goal-chip {
-  background: linear-gradient(135deg,#1e3a5c,#0b1118);
-  border: 1px solid var(--run);
-  border-radius: 20px; padding: 6px 14px;
-  font-size: .75rem; color: #7ec8f7; font-weight: 600;
-}
-
-/* ── SECTION LABELS ──────────────────────────────────────────────────────── */
-.section-label {
-  font-size: .65rem; font-weight: 700; letter-spacing: 1.2px;
-  text-transform: uppercase; color: var(--muted);
-  margin: 24px 0 10px;
-}
-
-/* ── KPI ROW ─────────────────────────────────────────────────────────────── */
+.goal-chip { background: linear-gradient(135deg,#1e3a5c,#0b1118); border: 1px solid var(--run); border-radius: 20px; padding: 6px 14px; font-size: .75rem; color: #7ec8f7; font-weight: 600; }
+.section-label { font-size: .65rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); margin: 24px 0 10px; }
 .kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
 @media(max-width:640px){ .kpi-row { grid-template-columns: repeat(2,1fr); } }
-.kpi {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px 16px;
-}
+.kpi { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
 .kpi-label { font-size: .65rem; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
 .kpi-value { font-size: 1.6rem; font-weight: 700; margin: 4px 0 2px; line-height: 1; }
 .kpi-sub   { font-size: .7rem; color: var(--muted); }
-.kpi.run   .kpi-value { color: var(--run); }
-.kpi.swim  .kpi-value { color: var(--swim); }
-.kpi.bike  .kpi-value { color: var(--bike); }
+.kpi.run  .kpi-value { color: var(--run); }
+.kpi.swim .kpi-value { color: var(--swim); }
+.kpi.bike .kpi-value { color: var(--bike); }
 .kpi.total .kpi-value { color: var(--text); }
-
-/* ── PROGRESS BAR ────────────────────────────────────────────────────────── */
 .progress-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
 .progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
 .progress-title  { font-size: .8rem; font-weight: 600; }
@@ -88,81 +54,41 @@ body {
 .bar-fill.bike { background: var(--bike); }
 .bar-fill.goal { background: linear-gradient(90deg,var(--bike),var(--good)); }
 .progress-note { font-size: .68rem; color: var(--muted); margin-top: 6px; }
-
-/* ── TRAINING LOG ────────────────────────────────────────────────────────── */
 .log-table { width: 100%; border-collapse: collapse; }
-.log-table th {
-  font-size: .62rem; font-weight: 700; letter-spacing: .8px;
-  text-transform: uppercase; color: var(--muted);
-  padding: 8px 10px; border-bottom: 1px solid var(--border);
-  text-align: left;
-}
-.log-table td {
-  font-size: .73rem; padding: 9px 10px;
-  border-bottom: 1px solid #12202e;
-  vertical-align: middle;
-}
+.log-table th { font-size: .62rem; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; }
+.log-table td { font-size: .73rem; padding: 9px 10px; border-bottom: 1px solid #12202e; vertical-align: middle; }
 .log-table tr:last-child td { border-bottom: none; }
 .log-table tr:hover td { background: #0f1922; }
-.sport-dot {
-  display: inline-block; width: 8px; height: 8px;
-  border-radius: 50%; margin-right: 6px; flex-shrink: 0;
-}
+.sport-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; flex-shrink: 0; }
 .sport-cell { display: flex; align-items: center; font-weight: 600; }
 .metric-good  { color: var(--good); }
 .metric-warn  { color: var(--warn); }
 .metric-muted { color: var(--muted); }
-.te-pill {
-  display: inline-block; border-radius: 4px;
-  padding: 2px 7px; font-size: .65rem; font-weight: 700;
-}
-.te-high   { background: #1a3a1a; color: #7fd67f; }
-.te-mid    { background: #2a2a00; color: #e0c040; }
-.te-low    { background: #1a2535; color: #5a8aaa; }
-
-/* ── TREND CHART ─────────────────────────────────────────────────────────── */
+.te-pill { display: inline-block; border-radius: 4px; padding: 2px 7px; font-size: .65rem; font-weight: 700; }
+.te-high { background: #1a3a1a; color: #7fd67f; }
+.te-mid  { background: #2a2a00; color: #e0c040; }
+.te-low  { background: #1a2535; color: #5a8aaa; }
 .chart-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
 .chart-title { font-size: .78rem; font-weight: 600; margin-bottom: 12px; }
 .sparkline-group { display: flex; flex-direction: column; gap: 14px; }
 .sparkline-row { display: flex; align-items: center; gap: 10px; }
 .sparkline-label { font-size: .68rem; color: var(--muted); width: 70px; flex-shrink: 0; }
-.sparkline-track {
-  flex: 1; height: 32px; position: relative;
-  display: flex; align-items: flex-end; gap: 4px;
-}
-.spark-bar {
-  flex: 1; border-radius: 3px 3px 0 0;
-  position: relative; min-height: 4px;
-  transition: opacity .2s;
-}
+.sparkline-track { flex: 1; height: 32px; position: relative; display: flex; align-items: flex-end; gap: 4px; }
+.spark-bar { flex: 1; border-radius: 3px 3px 0 0; position: relative; min-height: 4px; transition: opacity .2s; }
 .spark-bar:hover { opacity: .8; }
-.spark-bar .tip {
-  display: none; position: absolute; bottom: 100%; left: 50%;
-  transform: translateX(-50%);
-  background: #0b1118; border: 1px solid var(--border);
-  border-radius: 4px; padding: 3px 6px;
-  font-size: .62rem; white-space: nowrap; z-index: 10;
-}
+.spark-bar .tip { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: #0b1118; border: 1px solid var(--border); border-radius: 4px; padding: 3px 6px; font-size: .62rem; white-space: nowrap; z-index: 10; }
 .spark-bar:hover .tip { display: block; }
 .sparkline-val { font-size: .72rem; font-weight: 700; width: 48px; text-align: right; flex-shrink: 0; }
-
-/* ── WEEKLY LOAD ─────────────────────────────────────────────────────────── */
 .load-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 @media(max-width:580px){ .load-grid { grid-template-columns: 1fr; } }
-.load-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 14px;
-}
+.load-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
 .load-week  { font-size: .65rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .7px; }
 .load-te    { font-size: 1.8rem; font-weight: 700; margin: 6px 0 2px; }
 .load-label { font-size: .68rem; color: var(--muted); margin-bottom: 10px; }
 .load-bars  { display: flex; gap: 4px; align-items: flex-end; height: 36px; margin-bottom: 8px; }
 .load-bar   { flex: 1; border-radius: 3px 3px 0 0; min-height: 4px; }
 .load-disciplines { display: flex; gap: 8px; flex-wrap: wrap; }
-.disc-tag {
-  font-size: .62rem; padding: 2px 7px; border-radius: 10px;
-  font-weight: 600;
-}
+.disc-tag { font-size: .62rem; padding: 2px 7px; border-radius: 10px; font-weight: 600; }
 .disc-run   { background:#1a3a5c; color:#7ec8f7; }
 .disc-swim  { background:#003a52; color:#06d0ff; }
 .disc-bike  { background:#4a2500; color:#ffaa55; }
@@ -171,28 +97,12 @@ body {
 .status-green  { color: var(--good); }
 .status-yellow { color: var(--warn); }
 .status-red    { color: var(--danger); }
-
-/* ── PLAN WEEKS ──────────────────────────────────────────────────────────── */
-.week-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 10px 10px 0 0; padding: 10px 14px;
-}
-.week-nav button {
-  background: #1e3a5c; border: none; color: #fff;
-  border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: .78rem;
-}
+.week-nav { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-radius: 10px 10px 0 0; padding: 10px 14px; }
+.week-nav button { background: #1e3a5c; border: none; color: #fff; border-radius: 6px; padding: 5px 12px; cursor: pointer; font-size: .78rem; }
 .week-nav button:hover { background: var(--run); }
 .week-nav-label { font-weight: 700; font-size: .88rem; color: #7ec8f7; }
-.plan-grid {
-  display: grid; grid-template-columns: repeat(5,1fr); gap: 6px;
-  background: var(--card); border: 1px solid var(--border);
-  border-top: none; padding: 10px; border-radius: 0 0 10px 10px;
-}
-.plan-card {
-  border-radius: 8px; padding: 9px 8px;
-  border-top: 3px solid transparent; min-height: 120px;
-}
+.plan-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; background: var(--card); border: 1px solid var(--border); border-top: none; padding: 10px; border-radius: 0 0 10px 10px; }
+.plan-card { border-radius: 8px; padding: 9px 8px; border-top: 3px solid transparent; min-height: 120px; }
 .plan-card.run    { background:#0f1e30; border-top-color:var(--run); }
 .plan-card.swim   { background:#051a20; border-top-color:var(--swim); }
 .plan-card.bike   { background:#1e1000; border-top-color:var(--bike); }
@@ -201,41 +111,17 @@ body {
 .plan-card.travel { background:#100f20; border-top-color:var(--travel); }
 .plan-day  { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); }
 .plan-date { font-size: .7rem; color: #7a9ab8; margin: 2px 0 6px; }
-.plan-badge {
-  display: inline-block; border-radius: 3px; padding: 1px 5px;
-  font-size: .6rem; font-weight: 700; margin-bottom: 5px;
-}
+.plan-badge { display: inline-block; border-radius: 3px; padding: 1px 5px; font-size: .6rem; font-weight: 700; margin-bottom: 5px; }
 .plan-title  { font-size: .72rem; font-weight: 600; margin-bottom: 3px; line-height: 1.3; }
 .plan-detail { font-size: .64rem; color: var(--muted); line-height: 1.35; }
 .plan-dur    { font-size: .62rem; color: var(--accent); font-weight: 600; margin-top: 5px; }
-.plan-focus  {
-  margin: 8px 0 0;
-  background: #0a1e0a; border-left: 3px solid var(--brick);
-  border-radius: 0 6px 6px 0; padding: 7px 10px;
-  font-size: .7rem; color: #7acc7a;
-}
-.plan-alert {
-  margin: 8px 0 0;
-  background: #100f20; border-left: 3px solid var(--travel);
-  border-radius: 0 6px 6px 0; padding: 7px 10px;
-  font-size: .7rem; color: #c0a0ff;
-}
-.plan-summary {
-  display: flex; gap: 8px; flex-wrap: wrap;
-  background: var(--surface); padding: 8px 10px;
-  border: 1px solid var(--border); border-top: none;
-  border-radius: 0 0 8px 8px;
-  font-size: .68rem; color: var(--muted);
-}
+.plan-focus  { margin: 8px 0 0; background: #0a1e0a; border-left: 3px solid var(--brick); border-radius: 0 6px 6px 0; padding: 7px 10px; font-size: .7rem; color: #7acc7a; }
+.plan-alert  { margin: 8px 0 0; background: #100f20; border-left: 3px solid var(--travel); border-radius: 0 6px 6px 0; padding: 7px 10px; font-size: .7rem; color: #c0a0ff; }
+.plan-summary { display: flex; gap: 8px; flex-wrap: wrap; background: var(--surface); padding: 8px 10px; border: 1px solid var(--border); border-top: none; border-radius: 0 0 8px 8px; font-size: .68rem; color: var(--muted); }
 .plan-summary span { color: var(--accent); font-weight: 700; }
-
-/* ── OBJECTIVES ──────────────────────────────────────────────────────────── */
 .obj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
 @media(max-width:580px){ .obj-grid { grid-template-columns: 1fr; } }
-.obj-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 10px; padding: 16px;
-}
+.obj-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
 .obj-race    { font-size: .78rem; font-weight: 700; margin-bottom: 4px; }
 .obj-date    { font-size: .68rem; color: var(--muted); margin-bottom: 10px; }
 .obj-target  { font-size: 1.4rem; font-weight: 700; color: var(--goal); }
@@ -243,12 +129,15 @@ body {
 .obj-gap     { font-size: .68rem; margin-top: 8px; font-weight: 600; }
 .gap-close   { color: var(--good); }
 .gap-far     { color: var(--warn); }
+/* Loading */
+.loading { text-align:center; padding: 40px; color: var(--muted); font-size: .85rem; }
+.loading-spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--run); border-radius: 50%; animation: spin .8s linear infinite; margin-right: 8px; vertical-align: middle; }
+@keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 <div class="shell">
 
-  <!-- ── HEADER ──────────────────────────────────────────────────────────── -->
   <div class="header">
     <div class="header-left">
       <h1>🏃 Training Dashboard · Junio 2026</h1>
@@ -257,32 +146,9 @@ body {
     <div class="goal-chip">⚡ Objetivo: Sub 4:40 /km</div>
   </div>
 
-  <!-- ── KPIs ─────────────────────────────────────────────────────────────── -->
   <div class="section-label">Volumen acumulado</div>
-  <div class="kpi-row">
-    <div class="kpi run">
-      <div class="kpi-label">🏃 Carrera</div>
-      <div class="kpi-value">6</div>
-      <div class="kpi-sub">sesiones · 224 min · ~46 km</div>
-    </div>
-    <div class="kpi swim">
-      <div class="kpi-label">🏊 Natación</div>
-      <div class="kpi-value">2</div>
-      <div class="kpi-sub">sesiones · 60 min · 1.050 m</div>
-    </div>
-    <div class="kpi bike">
-      <div class="kpi-label">🚴 Bici</div>
-      <div class="kpi-value">2</div>
-      <div class="kpi-sub">sesiones · 127 min · 28 km</div>
-    </div>
-    <div class="kpi total">
-      <div class="kpi-label">⚡ TE Acumulado</div>
-      <div class="kpi-value">37.6</div>
-      <div class="kpi-sub">media 12.5 TE/semana</div>
-    </div>
-  </div>
+  <div class="kpi-row" id="kpiRow"><div class="loading"><span class="loading-spinner"></span>Cargando datos...</div></div>
 
-  <!-- ── OBJETIVOS ─────────────────────────────────────────────────────────── -->
   <div class="section-label">Objetivos de carrera</div>
   <div class="obj-grid">
     <div class="obj-card">
@@ -290,7 +156,7 @@ body {
       <div class="obj-date">Octubre 2026 · 21,1 km</div>
       <div class="obj-target">Sub 1:38:00</div>
       <div class="obj-current">Ritmo objetivo: &lt;4:40/km</div>
-      <div class="obj-gap gap-close">⚡ Ritmo actual duras: 4:43–4:45/km · Faltan ~3–5 s/km</div>
+      <div class="obj-gap gap-close" id="bilbaoGap">⚡ Cargando...</div>
     </div>
     <div class="obj-card">
       <div class="obj-race">🏙️ Media Maratón Barcelona</div>
@@ -301,149 +167,15 @@ body {
     </div>
   </div>
 
-  <!-- ── PROGRESO MÉTRICAS CLAVE ───────────────────────────────────────────── -->
   <div class="section-label">Progreso métricas clave — carrera</div>
   <div class="chart-wrap">
-    <div class="chart-title">Evolución sesiones E1→E6 (barras = valor, hover para detalle)</div>
-    <div class="sparkline-group">
-
-      <!-- Ritmo (invertido: menor = mejor, barra más alta) -->
-      <div class="sparkline-row">
-        <div class="sparkline-label">Ritmo /km</div>
-        <div class="sparkline-track">
-          <!-- invertimos: base 5.5, barra = (5.5 - val) / 0.8 * 100% -->
-          <div class="spark-bar" style="height:60%;background:var(--run)"><div class="tip">E1 · 5:02</div></div>
-          <div class="spark-bar" style="height:94%;background:var(--run)"><div class="tip">E2 · 4:45</div></div>
-          <div class="spark-bar" style="height:60%;background:var(--run)"><div class="tip">E3 · 5:02</div></div>
-          <div class="spark-bar" style="height:97%;background:var(--good)"><div class="tip">E4 · 4:43</div></div>
-          <div class="spark-bar" style="height:40%;background:var(--run)"><div class="tip">E5 · 5:17</div></div>
-          <div class="spark-bar" style="height:96%;background:var(--good)"><div class="tip">E6 · 4:44</div></div>
-        </div>
-        <div class="sparkline-val metric-good">4:43</div>
-      </div>
-
-      <!-- Cadencia -->
-      <div class="sparkline-row">
-        <div class="sparkline-label">Cadencia ppm</div>
-        <div class="sparkline-track">
-          <div class="spark-bar" style="height:40%;background:var(--swim)"><div class="tip">E1 · 154 ppm</div></div>
-          <div class="spark-bar" style="height:30%;background:var(--swim)"><div class="tip">E2 · 153 ppm</div></div>
-          <div class="spark-bar" style="height:40%;background:var(--swim)"><div class="tip">E3 · 154 ppm</div></div>
-          <div class="spark-bar" style="height:70%;background:var(--swim)"><div class="tip">E4 · 157 ppm</div></div>
-          <div class="spark-bar" style="height:30%;background:var(--swim)"><div class="tip">E5 · 153 ppm</div></div>
-          <div class="spark-bar" style="height:90%;background:var(--good)"><div class="tip">E6 · 158 ppm ↑</div></div>
-        </div>
-        <div class="sparkline-val metric-warn">158</div>
-      </div>
-
-      <!-- Contacto suelo -->
-      <div class="sparkline-row">
-        <div class="sparkline-label">Contacto ms</div>
-        <div class="sparkline-track">
-          <!-- invertido: base 300, barra = (300 - val) / 30 * 100% -->
-          <div class="spark-bar" style="height:46%;background:var(--other)"><div class="tip">E1 · 286 ms</div></div>
-          <div class="spark-bar" style="height:63%;background:var(--other)"><div class="tip">E2 · 281 ms</div></div>
-          <div class="spark-bar" style="height:46%;background:var(--other)"><div class="tip">E3 · 286 ms</div></div>
-          <div class="spark-bar" style="height:80%;background:var(--good)"><div class="tip">E4 · 276 ms ↓</div></div>
-          <div class="spark-bar" style="height:26%;background:var(--other)"><div class="tip">E5 · 292 ms</div></div>
-          <div class="spark-bar" style="height:76%;background:var(--good)"><div class="tip">E6 · 277 ms ↓</div></div>
-        </div>
-        <div class="sparkline-val metric-good">277ms</div>
-      </div>
-
-      <!-- Oscilación vertical -->
-      <div class="sparkline-row">
-        <div class="sparkline-label">Oscilación cm</div>
-        <div class="sparkline-track">
-          <!-- invertido: base 10.5, barra = (10.5 - val) / 0.8 * 100% -->
-          <div class="spark-bar" style="height:50%;background:var(--warn)"><div class="tip">E1 · 10.1 cm</div></div>
-          <div class="spark-bar" style="height:25%;background:var(--warn)"><div class="tip">E2 · 10.3 cm</div></div>
-          <div class="spark-bar" style="height:50%;background:var(--warn)"><div class="tip">E3 · 10.1 cm</div></div>
-          <div class="spark-bar" style="height:37%;background:var(--warn)"><div class="tip">E4 · 10.2 cm</div></div>
-          <div class="spark-bar" style="height:100%;background:var(--good)"><div class="tip">E5 · 9.9 cm ✅</div></div>
-          <div class="spark-bar" style="height:50%;background:var(--warn)"><div class="tip">E6 · 10.1 cm</div></div>
-        </div>
-        <div class="sparkline-val metric-warn">9.9↓</div>
-      </div>
-
-      <!-- Natación: brazadas -->
-      <div class="sparkline-row">
-        <div class="sparkline-label">Braz/largo 🏊</div>
-        <div class="sparkline-track">
-          <!-- invertido: base 14, barra = (14 - val) / 4 * 100% -->
-          <div class="spark-bar" style="height:15%;background:var(--swim)"><div class="tip">N1 · 13.4 braz</div></div>
-          <div class="spark-bar" style="height:72%;background:var(--good)"><div class="tip">N2 · 11.1 braz ✅</div></div>
-          <div class="spark-bar" style="height:0%;background:transparent"></div>
-          <div class="spark-bar" style="height:0%;background:transparent"></div>
-          <div class="spark-bar" style="height:0%;background:transparent"></div>
-          <div class="spark-bar" style="height:0%;background:transparent"></div>
-        </div>
-        <div class="sparkline-val metric-good">11.1</div>
-      </div>
-
-    </div>
+    <div class="chart-title" id="chartTitle">Evolución sesiones (barras = valor, hover para detalle)</div>
+    <div class="sparkline-group" id="sparklines"><div class="loading"><span class="loading-spinner"></span>Cargando métricas...</div></div>
   </div>
 
-  <!-- ── CARGA SEMANAL ──────────────────────────────────────────────────────── -->
   <div class="section-label">Carga semanal (Training Effect acumulado)</div>
-  <div class="load-grid">
+  <div class="load-grid" id="loadGrid"><div class="loading"><span class="loading-spinner"></span>Cargando carga...</div></div>
 
-    <div class="load-card">
-      <div class="load-week">26 May – 1 Jun</div>
-      <div class="load-te" style="color:var(--warn)">7.4</div>
-      <div class="load-label">TE total · 2 sesiones</div>
-      <div class="load-bars">
-        <div class="load-bar" style="height:44%;background:var(--run);"></div>
-        <div class="load-bar" style="height:0%;background:var(--swim);"></div>
-        <div class="load-bar" style="height:0%;background:var(--bike);"></div>
-        <div class="load-bar" style="height:0%;background:var(--other);"></div>
-      </div>
-      <div class="load-disciplines">
-        <span class="disc-tag disc-run">🏃 ×2</span>
-      </div>
-      <div class="load-status status-green">✅ Carga media — arranque sólido</div>
-    </div>
-
-    <div class="load-card">
-      <div class="load-week">2 Jun – 8 Jun</div>
-      <div class="load-te" style="color:var(--danger)">16.8</div>
-      <div class="load-label">TE total · 5 sesiones</div>
-      <div class="load-bars">
-        <div class="load-bar" style="height:45%;background:var(--run);"></div>
-        <div class="load-bar" style="height:18%;background:var(--swim);"></div>
-        <div class="load-bar" style="height:24%;background:var(--bike);"></div>
-        <div class="load-bar" style="height:13%;background:var(--other);"></div>
-      </div>
-      <div class="load-disciplines">
-        <span class="disc-tag disc-run">🏃 ×2</span>
-        <span class="disc-tag disc-swim">🏊 ×1</span>
-        <span class="disc-tag disc-bike">🚴 ×1</span>
-        <span class="disc-tag disc-other">🏀 ×1</span>
-      </div>
-      <div class="load-status status-red">⚠️ Carga alta — 3 días consecutivos</div>
-    </div>
-
-    <div class="load-card">
-      <div class="load-week">9 Jun – 15 Jun</div>
-      <div class="load-te" style="color:var(--warn)">13.4</div>
-      <div class="load-label">TE total · 4 sesiones</div>
-      <div class="load-bars">
-        <div class="load-bar" style="height:53%;background:var(--run);"></div>
-        <div class="load-bar" style="height:22%;background:var(--swim);"></div>
-        <div class="load-bar" style="height:25%;background:var(--bike);"></div>
-        <div class="load-bar" style="height:0%;background:var(--other);"></div>
-      </div>
-      <div class="load-disciplines">
-        <span class="disc-tag disc-run">🏃 ×2</span>
-        <span class="disc-tag disc-swim">🏊 ×1</span>
-        <span class="disc-tag disc-bike">🚴 ×1</span>
-      </div>
-      <div class="load-status status-green">✅ Bien distribuida — 1 disciplina/día</div>
-    </div>
-
-  </div>
-
-  <!-- ── REGISTRO COMPLETO ──────────────────────────────────────────────────── -->
   <div class="section-label">Registro de sesiones</div>
   <div class="chart-wrap" style="padding:0;overflow:hidden;">
     <table class="log-table">
@@ -454,113 +186,11 @@ body {
           <th>Cadencia / Braz</th><th>TE Aer</th><th>Nota clave</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td class="metric-muted">26 May</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Rodaje suave Z2</td>
-          <td>40 min</td><td>5:02 /km</td><td>154 ppm</td>
-          <td>154 ppm</td>
-          <td><span class="te-pill te-mid">3.6</span></td>
-          <td class="metric-muted">Base aeróbica establecida</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">29 May</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Ritmo libre fuerte</td>
-          <td>36 min</td><td class="metric-good">4:45 /km</td><td>163 ppm</td>
-          <td>153 ppm</td>
-          <td><span class="te-pill te-high">3.8</span></td>
-          <td class="metric-muted">Piernas cargadas — gran resultado</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">1 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Rodaje suave Z2</td>
-          <td>40 min</td><td>5:02 /km</td><td>154 ppm</td>
-          <td>154 ppm</td>
-          <td><span class="te-pill te-mid">3.6</span></td>
-          <td class="metric-muted">Consistente con E1</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">2 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--swim)"></span>Natación</span></td>
-          <td>Sesión libre piscina</td>
-          <td>30 min</td><td>2:27 /100m</td><td>140 ppm</td>
-          <td>13.4 braz</td>
-          <td><span class="te-pill te-mid">3.0</span></td>
-          <td class="metric-muted">Primera sesión registrada</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">3 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--other)"></span>Otros</span></td>
-          <td>Baloncesto</td>
-          <td>90 min</td><td>—</td><td>112 ppm</td>
-          <td>—</td>
-          <td><span class="te-pill te-low">2.2</span></td>
-          <td class="metric-good">FC máx 189 ppm — confirmada ✅</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">5 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Tempo progresivo</td>
-          <td>35 min</td><td class="metric-good">4:43 /km</td><td>162 ppm</td>
-          <td>157 ppm ↑</td>
-          <td><span class="te-pill te-high">3.9</span></td>
-          <td class="metric-good">Cadencia 157 — primera mejora</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">5 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--bike)"></span>Bici</span></td>
-          <td>Ruta montaña BCN</td>
-          <td>85 min</td><td>19.9 km/h</td><td>142 ppm</td>
-          <td>—</td>
-          <td><span class="te-pill te-high">4.1</span></td>
-          <td class="metric-muted">578m desnivel · Mismo día carrera</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">9 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Rodaje suave Z2</td>
-          <td>40 min</td><td>5:17 /km</td><td>150 ppm</td>
-          <td>153 ppm</td>
-          <td><span class="te-pill te-mid">3.4</span></td>
-          <td class="metric-good">Oscilación 9.9cm — primer &lt;10 ✅</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">10 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--bike)"></span>Bici</span></td>
-          <td>Intervalos 5×5 sala</td>
-          <td>42 min</td><td>—</td><td>146 ppm</td>
-          <td>—</td>
-          <td><span class="te-pill te-mid">3.3</span></td>
-          <td class="metric-muted">260W por serie · Sensación fuerte</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">11 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--swim)"></span>Natación</span></td>
-          <td>Técnica + 4×150m</td>
-          <td>30 min</td><td class="metric-good">2:18 /100m</td><td>144 ppm</td>
-          <td class="metric-good">11.1 braz ↓</td>
-          <td><span class="te-pill te-mid">3.0</span></td>
-          <td class="metric-good">Brazadas 13.4→11.1 — mejora técnica</td>
-        </tr>
-        <tr>
-          <td class="metric-muted">12 Jun</td>
-          <td><span class="sport-cell"><span class="sport-dot" style="background:var(--run)"></span>Carrera</span></td>
-          <td>Series 6×3min cadencia</td>
-          <td>33 min</td><td class="metric-good">4:44 /km</td><td>161 ppm</td>
-          <td class="metric-good">158 ppm ↑</td>
-          <td><span class="te-pill te-high">3.7</span></td>
-          <td class="metric-good">Cadencia 158 — nuevo máximo ✅</td>
-        </tr>
-      </tbody>
+      <tbody id="logBody"><tr><td colspan="9" class="loading"><span class="loading-spinner"></span>Cargando registro...</td></tr></tbody>
     </table>
   </div>
 
-  <!-- ── PLAN DE ENTRENAMIENTO ──────────────────────────────────────────────── -->
   <div class="section-label">Plan junio 2026</div>
-
   <div class="week-nav">
     <button onclick="prevWeek()">◀ Anterior</button>
     <span class="week-nav-label" id="weekLabel"></span>
@@ -571,74 +201,291 @@ body {
   <div id="planFocus"></div>
   <div class="plan-summary" id="planSummary"></div>
 
-</div><!-- /shell -->
+</div>
 
 <script>
+const SUPABASE_URL = "https://deevgujnzaovgknfnwtw.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRlZXZndWpuemFvdmdrbmZud3R3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2MzE2OTEsImV4cCI6MjA5NzIwNzY5MX0.LX6XiqnBva3xGgT7NyQ9Z8OzwbOuSCrWFfY2bRvD3cI";
+
+async function fetchTable(table, order = "fecha") {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}?order=${order}.asc`, {
+    headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` }
+  });
+  return res.json();
+}
+
+function fmtRitmo(v) {
+  if (!v) return "—";
+  const min = Math.floor(v);
+  const sec = Math.round((v - min) * 60).toString().padStart(2,"0");
+  return `${min}:${sec} /km`;
+}
+
+function fmtDate(d) {
+  if (!d) return "—";
+  const [y,m,day] = d.split("-");
+  const months = ["","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+  return `${parseInt(day)} ${months[parseInt(m)]}`;
+}
+
+function tePill(v) {
+  if (!v) return "—";
+  const cls = v >= 3.5 ? "te-high" : v >= 2.5 ? "te-mid" : "te-low";
+  return `<span class="te-pill ${cls}">${v.toFixed(1)}</span>`;
+}
+
+function teColor(v) {
+  if (v >= 16) return "var(--danger)";
+  if (v >= 10) return "var(--warn)";
+  return "var(--good)";
+}
+
+// ── KPIs ──────────────────────────────────────────────────────────────────
+function renderKPIs(carreras, natacion, bici, otros) {
+  const runMin  = carreras.reduce((s,r) => s + (r.duracion_min||0), 0);
+  const runKm   = carreras.reduce((s,r) => s + (r.distancia_km||0), 0);
+  const swimMin = natacion.reduce((s,r) => s + (r.duracion_min||0), 0);
+  const swimM   = natacion.reduce((s,r) => s + (r.distancia_m||0), 0);
+  const bikeMin = bici.reduce((s,r) => s + (r.duracion_min||0), 0);
+  const bikeKm  = bici.reduce((s,r) => s + (r.distancia_km||0), 0);
+
+  const allTE = [...carreras,...natacion,...bici,...otros]
+    .reduce((s,r) => s + (r.te_aerobico||0), 0);
+
+  document.getElementById("kpiRow").innerHTML = `
+    <div class="kpi run">
+      <div class="kpi-label">🏃 Carrera</div>
+      <div class="kpi-value">${carreras.length}</div>
+      <div class="kpi-sub">sesiones · ${runMin} min · ${runKm.toFixed(1)} km</div>
+    </div>
+    <div class="kpi swim">
+      <div class="kpi-label">🏊 Natación</div>
+      <div class="kpi-value">${natacion.length}</div>
+      <div class="kpi-sub">sesiones · ${swimMin} min · ${swimM} m</div>
+    </div>
+    <div class="kpi bike">
+      <div class="kpi-label">🚴 Bici</div>
+      <div class="kpi-value">${bici.length}</div>
+      <div class="kpi-sub">sesiones · ${bikeMin} min · ${bikeKm.toFixed(1)} km</div>
+    </div>
+    <div class="kpi total">
+      <div class="kpi-label">⚡ TE Acumulado</div>
+      <div class="kpi-value">${allTE.toFixed(1)}</div>
+      <div class="kpi-sub">media ${(allTE / Math.max(weeksFromData([...carreras,...natacion,...bici,...otros]),1)).toFixed(1)} TE/semana</div>
+    </div>`;
+}
+
+function weeksFromData(all) {
+  if (!all.length) return 1;
+  const dates = all.map(r => new Date(r.fecha)).sort((a,b) => a-b);
+  const diffDays = (dates[dates.length-1] - dates[0]) / 86400000;
+  return Math.max(Math.ceil(diffDays / 7), 1);
+}
+
+// ── SPARKLINES ────────────────────────────────────────────────────────────
+function renderSparklines(carreras) {
+  if (!carreras.length) { document.getElementById("sparklines").innerHTML = "<p style='color:var(--muted);font-size:.75rem'>Sin sesiones de carrera aún.</p>"; return; }
+
+  document.getElementById("chartTitle").textContent = `Evolución sesiones E1→E${carreras.length} (hover para detalle)`;
+
+  const metrics = [
+    {
+      label: "Ritmo /km", key: "ritmo_medio", color: "var(--run)", invert: true,
+      base: 5.5, range: 0.8,
+      fmt: (v,i) => `E${i+1} · ${fmtRitmo(v)}`,
+      lastFmt: v => fmtRitmo(v), lastClass: "metric-good"
+    },
+    {
+      label: "Cadencia ppm", key: "cadencia", color: "var(--swim)", invert: false,
+      base: 150, range: 20,
+      fmt: (v,i) => `E${i+1} · ${v} ppm`,
+      lastFmt: v => v, lastClass: "metric-warn"
+    },
+    {
+      label: "Contacto ms", key: "contacto_ms", color: "var(--other)", invert: true,
+      base: 300, range: 30,
+      fmt: (v,i) => `E${i+1} · ${v} ms`,
+      lastFmt: v => `${v}ms`, lastClass: "metric-good"
+    },
+    {
+      label: "Oscilación cm", key: "oscilacion_cm", color: "var(--warn)", invert: true,
+      base: 10.5, range: 0.8,
+      fmt: (v,i) => `E${i+1} · ${v} cm`,
+      lastFmt: v => `${v}cm`, lastClass: "metric-warn"
+    },
+  ];
+
+  const rows = metrics.map(m => {
+    const vals = carreras.map(r => r[m.key]).filter(v => v != null);
+    if (!vals.length) return "";
+    const bars = carreras.map((r,i) => {
+      const v = r[m.key];
+      if (v == null) return `<div class="spark-bar" style="height:0%;background:transparent"></div>`;
+      let pct;
+      if (m.invert) pct = Math.max(5, Math.min(100, ((m.base - v) / m.range) * 100));
+      else          pct = Math.max(5, Math.min(100, ((v - m.base) / m.range) * 100));
+      const last = i === carreras.length - 1;
+      const col  = last ? "var(--good)" : m.color;
+      return `<div class="spark-bar" style="height:${pct.toFixed(0)}%;background:${col}"><div class="tip">${m.fmt(v,i)}</div></div>`;
+    }).join("");
+    const lastVal = vals[vals.length-1];
+    return `
+      <div class="sparkline-row">
+        <div class="sparkline-label">${m.label}</div>
+        <div class="sparkline-track">${bars}</div>
+        <div class="sparkline-val ${m.lastClass}">${m.lastFmt(lastVal)}</div>
+      </div>`;
+  }).join("");
+
+  document.getElementById("sparklines").innerHTML = rows;
+}
+
+// ── CARGA SEMANAL ─────────────────────────────────────────────────────────
+function getWeekKey(dateStr) {
+  const d = new Date(dateStr);
+  const day = d.getDay() === 0 ? 6 : d.getDay() - 1; // Mon=0
+  const mon = new Date(d); mon.setDate(d.getDate() - day);
+  return mon.toISOString().slice(0,10);
+}
+
+function renderLoad(carreras, natacion, bici, otros) {
+  const all = [
+    ...carreras.map(r => ({...r, _tipo:"run"})),
+    ...natacion.map(r => ({...r, _tipo:"swim"})),
+    ...bici.map(r => ({...r, _tipo:"bike"})),
+    ...otros.map(r => ({...r, _tipo:"other"})),
+  ].sort((a,b) => a.fecha.localeCompare(b.fecha));
+
+  const weeks = {};
+  all.forEach(r => {
+    const wk = getWeekKey(r.fecha);
+    if (!weeks[wk]) weeks[wk] = {run:0,swim:0,bike:0,other:0,sessions:0,te:0};
+    weeks[wk][r._tipo] += r.te_aerobico || 0;
+    weeks[wk].te += r.te_aerobico || 0;
+    weeks[wk].sessions++;
+  });
+
+  const wkKeys = Object.keys(weeks).sort();
+  const maxTE  = Math.max(...wkKeys.map(k => weeks[k].te), 1);
+
+  const fmtWkLabel = k => {
+    const d = new Date(k);
+    const end = new Date(k); end.setDate(d.getDate()+6);
+    const months = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+    return `${d.getDate()} ${months[d.getMonth()]} – ${end.getDate()} ${months[end.getMonth()]}`;
+  };
+
+  document.getElementById("loadGrid").innerHTML = wkKeys.map(k => {
+    const w = weeks[k];
+    const pRun  = (w.run  / maxTE * 100).toFixed(0);
+    const pSwim = (w.swim / maxTE * 100).toFixed(0);
+    const pBike = (w.bike / maxTE * 100).toFixed(0);
+    const pOth  = (w.other/ maxTE * 100).toFixed(0);
+    const statusClass = w.te >= 15 ? "status-red" : w.te >= 10 ? "status-yellow" : "status-green";
+    const statusText  = w.te >= 15 ? "⚠️ Carga alta" : w.te >= 10 ? "↗ Carga media-alta" : "✅ Carga controlada";
+    const tags = [
+      w.run  > 0 ? `<span class="disc-tag disc-run">🏃 ×${Math.round(w.run/3.5)}</span>` : "",
+      w.swim > 0 ? `<span class="disc-tag disc-swim">🏊 ×${Math.round(w.swim/3)}</span>` : "",
+      w.bike > 0 ? `<span class="disc-tag disc-bike">🚴 ×${Math.round(w.bike/3.5)}</span>` : "",
+      w.other> 0 ? `<span class="disc-tag disc-other">🎯 ×${Math.round(w.other/2.5)}</span>` : "",
+    ].filter(Boolean).join("");
+    return `
+      <div class="load-card">
+        <div class="load-week">${fmtWkLabel(k)}</div>
+        <div class="load-te" style="color:${teColor(w.te)}">${w.te.toFixed(1)}</div>
+        <div class="load-label">TE total · ${w.sessions} sesiones</div>
+        <div class="load-bars">
+          <div class="load-bar" style="height:${pRun}%;background:var(--run)"></div>
+          <div class="load-bar" style="height:${pSwim}%;background:var(--swim)"></div>
+          <div class="load-bar" style="height:${pBike}%;background:var(--bike)"></div>
+          <div class="load-bar" style="height:${pOth}%;background:var(--other)"></div>
+        </div>
+        <div class="load-disciplines">${tags}</div>
+        <div class="load-status ${statusClass}">${statusText}</div>
+      </div>`;
+  }).join("");
+}
+
+// ── LOG TABLE ─────────────────────────────────────────────────────────────
+function renderLog(carreras, natacion, bici, otros) {
+  const all = [
+    ...carreras.map(r => ({...r, _tipo:"carrera", _color:"var(--run)"})),
+    ...natacion.map(r => ({...r, _tipo:"natacion", _color:"var(--swim)"})),
+    ...bici.map(r =>     ({...r, _tipo:"bici",     _color:"var(--bike)"})),
+    ...otros.map(r =>    ({...r, _tipo:"otros",    _color:"var(--other)"})),
+  ].sort((a,b) => a.fecha.localeCompare(b.fecha));
+
+  const rows = all.map(r => {
+    const tipo = r._tipo === "carrera" ? "Carrera" : r._tipo === "natacion" ? "Natación" : r._tipo === "bici" ? "Bici" : (r.deporte || "Otros");
+    let ritmo = "—", cadBraz = "—";
+    if (r._tipo === "carrera") { ritmo = fmtRitmo(r.ritmo_medio); cadBraz = r.cadencia ? `${r.cadencia} ppm` : "—"; }
+    else if (r._tipo === "natacion") { ritmo = r.ritmo_medio ? fmtRitmo(r.ritmo_medio).replace("/km","/100m") : "—"; cadBraz = r.brazadas_largo ? `${r.brazadas_largo} braz` : "—"; }
+    else if (r._tipo === "bici") { ritmo = r.velocidad_media ? `${r.velocidad_media} km/h` : "—"; cadBraz = r.cadencia_rpm ? `${r.cadencia_rpm} rpm` : "—"; }
+    return `<tr>
+      <td class="metric-muted">${fmtDate(r.fecha)}</td>
+      <td><span class="sport-cell"><span class="sport-dot" style="background:${r._color}"></span>${tipo}</span></td>
+      <td>${r.objetivo || "—"}</td>
+      <td>${r.duracion_min ? r.duracion_min+" min" : "—"}</td>
+      <td>${ritmo}</td>
+      <td>${r.fc_media ? r.fc_media+" ppm" : "—"}</td>
+      <td>${cadBraz}</td>
+      <td>${tePill(r.te_aerobico)}</td>
+      <td class="metric-muted">${r.notas || "—"}</td>
+    </tr>`;
+  }).join("");
+
+  document.getElementById("logBody").innerHTML = rows || `<tr><td colspan="9" class="metric-muted" style="padding:20px;text-align:center">Sin sesiones registradas</td></tr>`;
+
+  // Update bilbao gap based on last hard run
+  const hardRuns = carreras.filter(r => r.ritmo_medio && r.ritmo_medio < 5.0);
+  if (hardRuns.length) {
+    const best = Math.min(...hardRuns.map(r => r.ritmo_medio));
+    const gap  = (best - 4.667).toFixed(2);
+    const gapSec = Math.round((best - 4.667) * 60);
+    document.getElementById("bilbaoGap").textContent = gapSec <= 0
+      ? "✅ Objetivo alcanzado"
+      : `⚡ Mejor ritmo duras: ${fmtRitmo(best)} · Faltan ~${gapSec}s/km`;
+  }
+}
+
+// ── PLAN DE ENTRENAMIENTO ─────────────────────────────────────────────────
 const weeks = [
-  {
-    label:"Semana 1 · 2–6 Jun ✅",
-    alert:null,
-    focus:"✅ Completada — Base aeróbica establecida. Cadencia base 154 ppm. FC máx real 189 ppm confirmada.",
+  { label:"Semana 1 · 2–6 Jun ✅", alert:null, focus:"✅ Completada — Base aeróbica establecida. Cadencia base 154 ppm. FC máx real 189 ppm confirmada.",
     days:[
       {d:"Lun",dt:"2 Jun",type:"run",badge:"run",title:"Rodaje Z2 suave ✅",detail:"40 min · 5:02/km · 154 ppm",dur:"40 min"},
       {d:"Mar",dt:"3 Jun",type:"rest",badge:"rest",title:"Baloncesto ✅",detail:"FC máx 189 ppm confirmada",dur:"90 min"},
       {d:"Mié",dt:"4 Jun",type:"rest",badge:"rest",title:"Descanso",detail:"Sin sesión",dur:"—"},
       {d:"Jue",dt:"5 Jun",type:"run",badge:"run",title:"Tempo + Bici ✅",detail:"Carrera 4:45/km · Bici 578m+",dur:"121 min"},
       {d:"Vie",dt:"6 Jun",type:"rest",badge:"rest",title:"Descanso",detail:"Sin sesión",dur:"—"},
-    ],
-    sum:{s:3,run:"76 min",bike:"85 min",swim:"—",load:"Media"}
-  },
-  {
-    label:"Semana 2 · 9–13 Jun ✅",
-    alert:null,
-    focus:"✅ Completada — Mejor semana. Cadencia 158 ppm nuevo máximo. Oscilación 9.9cm (primera vez <10cm). Brazadas 11.1.",
+    ], sum:{s:3,run:"76 min",bike:"85 min",swim:"—",load:"Media"} },
+  { label:"Semana 2 · 9–13 Jun ✅", alert:null, focus:"✅ Completada — Mejor semana. Cadencia 158 ppm nuevo máximo. Oscilación 9.9cm (primera vez <10cm). Brazadas 11.1.",
     days:[
       {d:"Lun",dt:"9 Jun",type:"run",badge:"run",title:"Rodaje Z2 suave ✅",detail:"40 min · 5:17/km · 9.9cm oscilación",dur:"40 min"},
       {d:"Mar",dt:"10 Jun",type:"bike",badge:"bike",title:"Bici intervalos ✅",detail:"42 min · 5×5' a 260W",dur:"42 min"},
       {d:"Mié",dt:"11 Jun",type:"swim",badge:"swim",title:"Natación técnica ✅",detail:"1.050m · 2:18/100m · 11.1 braz",dur:"30 min"},
       {d:"Jue",dt:"12 Jun",type:"run",badge:"run",title:"Series cadencia ✅",detail:"4:44/km · Cadencia 158 ppm ↑",dur:"33 min"},
       {d:"Vie",dt:"13 Jun",type:"rest",badge:"rest",title:"Descanso",detail:"Bici suave opcional",dur:"Opcional"},
-    ],
-    sum:{s:4,run:"73 min",bike:"42 min",swim:"30 min",load:"Media-Alta"}
-  },
-  {
-    label:"Semana 3 · 16–20 Jun ⚠️ Ajustada",
-    alert:"⚠️ Compromisos laborales — solo disponibles martes y miércoles.",
-    focus:"🟡 Mantenimiento mínimo — 1 carrera tempo corto + 1 natación técnica. Sin forzar carga.",
+    ], sum:{s:4,run:"73 min",bike:"42 min",swim:"30 min",load:"Media-Alta"} },
+  { label:"Semana 3 · 16–20 Jun ⚠️ Ajustada", alert:"⚠️ Compromisos laborales — solo disponibles martes y miércoles.", focus:"🟡 Mantenimiento mínimo — 1 carrera tempo corto + 1 natación técnica. Sin forzar carga.",
     days:[
       {d:"Lun",dt:"16 Jun",type:"travel",badge:"travel",title:"Compromiso laboral",detail:"Fuera · Descanso activo",dur:"—"},
-      {d:"Mar",dt:"17 Jun",type:"run",badge:"run",title:"Tempo corto",detail:"35 min · 15' cal + 15' a 4:45/km\nCadencia 160+ metrónomo",dur:"35 min"},
+      {d:"Mar",dt:"17 Jun",type:"run",badge:"run",title:"Series cadencia",detail:"35 min · 155 ppm cadencia",dur:"35 min"},
       {d:"Mié",dt:"18 Jun",type:"swim",badge:"swim",title:"Natación técnica",detail:"30 min · Catch-up drill\n4×100m · objetivo <12 braz/largo",dur:"30 min"},
       {d:"Jue",dt:"19 Jun",type:"travel",badge:"travel",title:"Compromiso laboral",detail:"Fuera · 10.000 pasos si posible",dur:"—"},
       {d:"Vie",dt:"20 Jun",type:"travel",badge:"travel",title:"Compromiso laboral",detail:"Fuera",dur:"—"},
-    ],
-    sum:{s:2,run:"35 min",bike:"—",swim:"30 min",load:"Baja"}
-  },
-  {
-    label:"Semana 4 · 23–27 Jun ⚠️ Ajustada",
-    alert:"⚠️ Viaje martes y miércoles — disponibles lunes, jueves y viernes.",
-    focus:"🟠 Semana clave — Brick + test sub-4:40/km. Sesiones concentradas en los días disponibles.",
+    ], sum:{s:2,run:"35 min",bike:"—",swim:"30 min",load:"Baja"} },
+  { label:"Semana 4 · 23–27 Jun ⚠️ Ajustada", alert:"⚠️ Viaje martes y miércoles — disponibles lunes, jueves y viernes.", focus:"🟠 Semana clave — Brick + test sub-4:40/km. Sesiones concentradas en los días disponibles.",
     days:[
       {d:"Lun",dt:"23 Jun",type:"run",badge:"run",title:"Rodaje Z2 largo",detail:"50 min · FC <158 ppm\nCadencia metrónomo 165 ppm",dur:"50 min"},
       {d:"Mar",dt:"24 Jun",type:"travel",badge:"travel",title:"Viaje",detail:"Fuera · Descanso activo",dur:"—"},
       {d:"Mié",dt:"25 Jun",type:"travel",badge:"travel",title:"Viaje",detail:"Fuera",dur:"—"},
       {d:"Jue",dt:"26 Jun",type:"brick",badge:"brick",title:"Brick Bici + Carrera",detail:"Bici 40 min Z3 → transición\nCarrera 15 min a 4:40-4:45/km",dur:"60 min"},
       {d:"Vie",dt:"27 Jun",type:"run",badge:"run",title:"⚡ Test 4:40/km",detail:"35 min · 15' cal + 10-12' a 4:40/km\nEvaluar FC y sensaciones",dur:"35 min"},
-    ],
-    sum:{s:3,run:"100 min",bike:"40 min",swim:"—",load:"Media-Alta"}
-  },
+    ], sum:{s:3,run:"100 min",bike:"40 min",swim:"—",load:"Media-Alta"} },
 ];
 
 const badgeLabels={run:"🏃 CARRERA",swim:"🏊 NATACIÓN",bike:"🚴 BICI",brick:"⚡ BRICK",rest:"😴 DESCANSO",travel:"✈️ VIAJE"};
-const badgeStyles={
-  run:"background:#1a3a5c;color:#7ec8f7",
-  swim:"background:#003a52;color:#06d0ff",
-  bike:"background:#4a2500;color:#ffaa55",
-  brick:"background:#1a3a1a;color:#7fd67f",
-  rest:"background:#1a2535;color:#4a6a8a",
-  travel:"background:#2a1a4a;color:#c090ff"
-};
-
+const badgeStyles={run:"background:#1a3a5c;color:#7ec8f7",swim:"background:#003a52;color:#06d0ff",bike:"background:#4a2500;color:#ffaa55",brick:"background:#1a3a1a;color:#7fd67f",rest:"background:#1a2535;color:#4a6a8a",travel:"background:#2a1a4a;color:#c090ff"};
 let cur=0;
 function renderWeek(){
   const w=weeks[cur];
@@ -648,29 +495,37 @@ function renderWeek(){
   w.days.forEach(d=>{
     const card=document.createElement("div");
     card.className=`plan-card ${d.type}`;
-    card.innerHTML=`
-      <div class="plan-day">${d.d}</div>
-      <div class="plan-date">${d.dt}</div>
-      <div class="plan-badge" style="${badgeStyles[d.badge]}">${badgeLabels[d.badge]}</div>
-      <div class="plan-title">${d.title}</div>
-      <div class="plan-detail">${d.detail.replace(/\n/g,"<br>")}</div>
-      <div class="plan-dur">⏱ ${d.dur}</div>`;
+    card.innerHTML=`<div class="plan-day">${d.d}</div><div class="plan-date">${d.dt}</div><div class="plan-badge" style="${badgeStyles[d.badge]}">${badgeLabels[d.badge]}</div><div class="plan-title">${d.title}</div><div class="plan-detail">${d.detail.replace(/\n/g,"<br>")}</div><div class="plan-dur">⏱ ${d.dur}</div>`;
     grid.appendChild(card);
   });
-  const alertDiv=document.getElementById("planAlert");
-  alertDiv.innerHTML=w.alert?`<div class="plan-alert">${w.alert}</div>`:"";
+  document.getElementById("planAlert").innerHTML=w.alert?`<div class="plan-alert">${w.alert}</div>`:"";
   document.getElementById("planFocus").innerHTML=`<div class="plan-focus">${w.focus}</div>`;
   const s=w.sum;
-  document.getElementById("planSummary").innerHTML=
-    `<div>Sesiones: <span>${s.s}</span></div>
-     <div>🏃 <span>${s.run}</span></div>
-     <div>🚴 <span>${s.bike}</span></div>
-     <div>🏊 <span>${s.swim}</span></div>
-     <div>Carga: <span>${s.load}</span></div>`;
+  document.getElementById("planSummary").innerHTML=`<div>Sesiones: <span>${s.s}</span></div><div>🏃 <span>${s.run}</span></div><div>🚴 <span>${s.bike}</span></div><div>🏊 <span>${s.swim}</span></div><div>Carga: <span>${s.load}</span></div>`;
 }
 function prevWeek(){if(cur>0){cur--;renderWeek();}}
 function nextWeek(){if(cur<weeks.length-1){cur++;renderWeek();}}
 renderWeek();
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const [carreras, natacion, bici, otros] = await Promise.all([
+      fetchTable("carrera"),
+      fetchTable("natacion"),
+      fetchTable("bici"),
+      fetchTable("otros"),
+    ]);
+    renderKPIs(carreras, natacion, bici, otros);
+    renderSparklines(carreras);
+    renderLoad(carreras, natacion, bici, otros);
+    renderLog(carreras, natacion, bici, otros);
+  } catch(e) {
+    console.error(e);
+    document.getElementById("kpiRow").innerHTML = `<div style="color:var(--danger);padding:20px">Error cargando datos: ${e.message}</div>`;
+  }
+}
+init();
 </script>
 </body>
 </html>
