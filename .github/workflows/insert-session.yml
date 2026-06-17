@@ -1,3 +1,4 @@
+
 name: Insertar sesion en Supabase
 
 on:
@@ -14,43 +15,97 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Diagnostico y insert
+      - name: Preparar e insertar
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          echo "=== DIAGNOSTICO ==="
-          echo "URL configurada: ${SUPABASE_URL:0:30}..."
-          echo "KEY configurada: ${SUPABASE_KEY:0:20}..."
-          echo "JSON a insertar:"
-          cat sesiones/nueva_sesion.json
-          echo ""
-          echo "=== INSERT ==="
-          HTTP_CODE=$(curl -v -s -o /tmp/response.json -w "%{http_code}" \
-            -X POST "${SUPABASE_URL}/rest/v1/sesiones" \
-            -H "apikey: ${SUPABASE_KEY}" \
-            -H "Authorization: Bearer ${SUPABASE_KEY}" \
+          # Leer tipo de sesion
+          TIPO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d.get('tipo','').lower())")
+          echo "Tipo de sesion: $TIPO"
+
+          # Routing a tabla correcta
+          case "$TIPO" in
+            carrera) TABLE="carrera" ;;
+            bici)    TABLE="bici" ;;
+            natacion) TABLE="natacion" ;;
+            *)       TABLE="otros" ;;
+          esac
+          echo "Tabla destino: $TABLE"
+
+          # Extraer campos segun tabla y construir JSON limpio
+          python3 << EOF
+import json, sys
+
+with open('sesiones/nueva_sesion.json') as f:
+    d = json.load(f)
+
+tipo = d.get('tipo', '').lower()
+
+if tipo == 'carrera':
+    out = {k: d[k] for k in [
+        'fecha','objetivo','fatiga_previa','duracion_min','distancia_km',
+        'ritmo_media','ritmo_optimo','fc_media','fc_max',
+        'potencia_media','potencia_max','cadencia',
+        'oscilacion_cm','contacto_ms','ratio_vertical','stamina_final',
+        'te_aerobico','te_anaerobico','notas'
+    ] if k in d}
+
+elif tipo == 'bici':
+    out = {k: d[k] for k in [
+        'fecha','objetivo','fatiga_previa','duracion_min','distancia_km',
+        'velocidad_media','velocidad_max','fc_media','fc_max',
+        'potencia_media','potencia_max','cadencia_rpm','desnivel_m','tae',
+        'te_aerobico','te_anaerobico','notas'
+    ] if k in d}
+
+elif tipo == 'natacion':
+    out = {k: d[k] for k in [
+        'fecha','objetivo','fatiga_previa','duracion_min','distancia_m',
+        'ritmo_media','ritmo_optimo','fc_media','fc_max',
+        'brazadas_largo','estil','te_aerobico','te_anaerobico','notas'
+    ] if k in d}
+
+else:
+    out = {k: d[k] for k in [
+        'fecha','deporte','objetivo','duracion_min','fc_media','fc_max',
+        'calorias','te_aerobico','te_anaerobico',
+        'carga_ajenada','body_battery','notas'
+    ] if k in d}
+
+with open('/tmp/payload.json', 'w') as f:
+    json.dump(out, f)
+
+print("Payload generado:", json.dumps(out, indent=2))
+EOF
+
+          # Insert en Supabase
+          HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+            -X POST "$SUPABASE_URL/rest/v1/$TABLE" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=representation" \
-            -d @sesiones/nueva_sesion.json 2>&1)
-          echo "Codigo HTTP: $HTTP_CODE"
-          echo "Respuesta Supabase:"
+            -d @/tmp/payload.json)
+
+          echo "HTTP: $HTTP_CODE"
           cat /tmp/response.json
+
           if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "OK sesion insertada"
+            echo "OK insertado en $TABLE"
           else
-            echo "ERROR codigo $HTTP_CODE"
+            echo "ERROR $HTTP_CODE"
             exit 1
           fi
 
       - name: Archivar sesion
         run: |
           FECHA=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d['fecha'])")
-          CODIGO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d['codigo'])")
+          TIPO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d.get('tipo','').lower())")
           mkdir -p sesiones/historial
-          cp sesiones/nueva_sesion.json "sesiones/historial/${FECHA}_${CODIGO}.json"
+          cp sesiones/nueva_sesion.json "sesiones/historial/${FECHA}_${TIPO}.json"
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sesiones/historial/
-          git diff --staged --quiet || git commit -m "Archivada ${CODIGO} (${FECHA})"
+          git diff --staged --quiet || git commit -m "Archivada ${TIPO} (${FECHA})"
           git push
