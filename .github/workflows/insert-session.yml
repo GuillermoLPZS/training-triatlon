@@ -21,23 +21,29 @@ jobs:
         run: |
           TABLE=$(python3 scripts/router.py)
           echo "TABLA=$TABLE" >> $GITHUB_ENV
-          echo "=== Tabla: $TABLE ==="
-          echo "=== Payload ==="
+          echo "Tabla: $TABLE"
+          echo "Payload:"
           cat /tmp/payload.json
 
       - name: Insertar en Supabase
         run: |
-          echo "=== Enviando a ${SUPABASE_URL}/rest/v1/${TABLA} ==="
-          curl -v -s -o /tmp/response.json \
+          echo "POST a ${SUPABASE_URL}/rest/v1/${TABLA}"
+          HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
             -X POST "${SUPABASE_URL}/rest/v1/${TABLA}" \
             -H "apikey: ${SUPABASE_KEY}" \
             -H "Authorization: Bearer ${SUPABASE_KEY}" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=representation" \
-            -d @/tmp/payload.json
-          echo ""
-          echo "=== Respuesta Supabase ==="
+            -d @/tmp/payload.json)
+          echo "HTTP: $HTTP_CODE"
+          echo "Respuesta:"
           cat /tmp/response.json
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "INSERT OK"
+          else
+            echo "INSERT FAILED con $HTTP_CODE"
+            exit 1
+          fi
 
       - name: Archivar sesion
         run: |
