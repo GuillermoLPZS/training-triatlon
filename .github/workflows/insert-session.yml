@@ -2,12 +2,15 @@ name: Insertar sesion en Supabase
 
 on:
   push:
-    paths:
-      - 'sesiones/nueva_sesion.json'
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   insert:
     runs-on: ubuntu-latest
+    # Solo ejecutar si el commit toca nueva_sesion.json
+    if: contains(github.event.head_commit.message, '🏃') || contains(github.event.head_commit.message, '🏊') || contains(github.event.head_commit.message, '🚴') || contains(github.event.head_commit.message, '⚡') || github.event_name == 'workflow_dispatch'
     permissions:
       contents: write
     env:
@@ -39,9 +42,9 @@ jobs:
           echo "Respuesta:"
           cat /tmp/response.json
           if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "INSERT OK"
+            echo "INSERT OK en ${TABLA}"
           else
-            echo "INSERT FAILED con $HTTP_CODE"
+            echo "INSERT FAILED: $HTTP_CODE"
             exit 1
           fi
 
