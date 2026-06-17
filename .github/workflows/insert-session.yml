@@ -1,4 +1,4 @@
-name: Insertar sesion en Supabase
+name: Test trigger
 
 on:
   push:
@@ -6,53 +6,11 @@ on:
       - 'sesiones/nueva_sesion.json'
 
 jobs:
-  insert:
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Preparar payload
+      - uses: actions/checkout@v4
+      - name: Echo test
         run: |
-          TABLE=$(python3 scripts/router.py)
-          echo "TABLA=$TABLE" >> $GITHUB_ENV
-          echo "Tabla destino: $TABLE"
-          echo "Payload generado:"
-          cat /tmp/payload.json
-
-      - name: Insertar en Supabase
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: |
-          HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
-            -X POST "$SUPABASE_URL/rest/v1/$TABLA" \
-            -H "apikey: $SUPABASE_KEY" \
-            -H "Authorization: Bearer $SUPABASE_KEY" \
-            -H "Content-Type: application/json" \
-            -H "Prefer: return=representation" \
-            -d @/tmp/payload.json)
-
-          echo "HTTP: $HTTP_CODE"
-          cat /tmp/response.json
-
-          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "OK insertado en $TABLA"
-          else
-            echo "ERROR $HTTP_CODE"
-            exit 1
-          fi
-
-      - name: Archivar sesion
-        run: |
-          FECHA=$(python3 -c "import json; print(json.load(open('sesiones/nueva_sesion.json'))['fecha'])")
-          TIPO=$(python3 -c "import json; print(json.load(open('sesiones/nueva_sesion.json')).get('tipo','').lower())")
-          mkdir -p sesiones/historial
-          cp sesiones/nueva_sesion.json "sesiones/historial/${FECHA}_${TIPO}.json"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sesiones/historial/
-          git diff --staged --quiet || git commit -m "Archivada ${TIPO} (${FECHA})"
-          git push
+          echo "Workflow triggered OK"
+          cat sesiones/nueva_sesion.json
