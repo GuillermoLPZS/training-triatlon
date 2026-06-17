@@ -1,4 +1,4 @@
-name: Insertar sesión en Supabase
+name: Insertar sesion en Supabase
 
 on:
   push:
@@ -14,32 +14,36 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Insertar en Supabase
+      - name: Diagnostico y insert
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          echo "Insertando sesión en Supabase..."
-
-          HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
-            -X POST "$SUPABASE_URL/rest/v1/sesiones" \
-            -H "apikey: $SUPABASE_KEY" \
-            -H "Authorization: Bearer $SUPABASE_KEY" \
+          echo "=== DIAGNOSTICO ==="
+          echo "URL configurada: ${SUPABASE_URL:0:30}..."
+          echo "KEY configurada: ${SUPABASE_KEY:0:20}..."
+          echo "JSON a insertar:"
+          cat sesiones/nueva_sesion.json
+          echo ""
+          echo "=== INSERT ==="
+          HTTP_CODE=$(curl -v -s -o /tmp/response.json -w "%{http_code}" \
+            -X POST "${SUPABASE_URL}/rest/v1/sesiones" \
+            -H "apikey: ${SUPABASE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_KEY}" \
             -H "Content-Type: application/json" \
             -H "Prefer: return=representation" \
-            -d @sesiones/nueva_sesion.json)
-
-          echo "HTTP: $HTTP_CODE"
+            -d @sesiones/nueva_sesion.json 2>&1)
+          echo "Codigo HTTP: $HTTP_CODE"
+          echo "Respuesta Supabase:"
           cat /tmp/response.json
-
           if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "✅ Sesión insertada correctamente"
+            echo "OK sesion insertada"
           else
-            echo "❌ Error al insertar — código $HTTP_CODE"
+            echo "ERROR codigo $HTTP_CODE"
             exit 1
           fi
 
-      - name: Archivar sesión
+      - name: Archivar sesion
         run: |
           FECHA=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d['fecha'])")
           CODIGO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d['codigo'])")
@@ -48,5 +52,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sesiones/historial/
-          git diff --staged --quiet || git commit -m "📦 Archivada ${CODIGO} (${FECHA})"
+          git diff --staged --quiet || git commit -m "Archivada ${CODIGO} (${FECHA})"
           git push
