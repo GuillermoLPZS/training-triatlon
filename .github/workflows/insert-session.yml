@@ -1,4 +1,3 @@
-
 name: Insertar sesion en Supabase
 
 on:
@@ -15,73 +14,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Preparar e insertar
+      - name: Preparar payload
+        run: |
+          TABLE=$(python3 scripts/router.py)
+          echo "TABLA=$TABLE" >> $GITHUB_ENV
+          echo "Tabla destino: $TABLE"
+          echo "Payload generado:"
+          cat /tmp/payload.json
+
+      - name: Insertar en Supabase
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
-          # Leer tipo de sesion
-          TIPO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d.get('tipo','').lower())")
-          echo "Tipo de sesion: $TIPO"
-
-          # Routing a tabla correcta
-          case "$TIPO" in
-            carrera) TABLE="carrera" ;;
-            bici)    TABLE="bici" ;;
-            natacion) TABLE="natacion" ;;
-            *)       TABLE="otros" ;;
-          esac
-          echo "Tabla destino: $TABLE"
-
-          # Extraer campos segun tabla y construir JSON limpio
-          python3 << EOF
-import json, sys
-
-with open('sesiones/nueva_sesion.json') as f:
-    d = json.load(f)
-
-tipo = d.get('tipo', '').lower()
-
-if tipo == 'carrera':
-    out = {k: d[k] for k in [
-        'fecha','objetivo','fatiga_previa','duracion_min','distancia_km',
-        'ritmo_media','ritmo_optimo','fc_media','fc_max',
-        'potencia_media','potencia_max','cadencia',
-        'oscilacion_cm','contacto_ms','ratio_vertical','stamina_final',
-        'te_aerobico','te_anaerobico','notas'
-    ] if k in d}
-
-elif tipo == 'bici':
-    out = {k: d[k] for k in [
-        'fecha','objetivo','fatiga_previa','duracion_min','distancia_km',
-        'velocidad_media','velocidad_max','fc_media','fc_max',
-        'potencia_media','potencia_max','cadencia_rpm','desnivel_m','tae',
-        'te_aerobico','te_anaerobico','notas'
-    ] if k in d}
-
-elif tipo == 'natacion':
-    out = {k: d[k] for k in [
-        'fecha','objetivo','fatiga_previa','duracion_min','distancia_m',
-        'ritmo_media','ritmo_optimo','fc_media','fc_max',
-        'brazadas_largo','estil','te_aerobico','te_anaerobico','notas'
-    ] if k in d}
-
-else:
-    out = {k: d[k] for k in [
-        'fecha','deporte','objetivo','duracion_min','fc_media','fc_max',
-        'calorias','te_aerobico','te_anaerobico',
-        'carga_ajenada','body_battery','notas'
-    ] if k in d}
-
-with open('/tmp/payload.json', 'w') as f:
-    json.dump(out, f)
-
-print("Payload generado:", json.dumps(out, indent=2))
-EOF
-
-          # Insert en Supabase
           HTTP_CODE=$(curl -s -o /tmp/response.json -w "%{http_code}" \
-            -X POST "$SUPABASE_URL/rest/v1/$TABLE" \
+            -X POST "$SUPABASE_URL/rest/v1/$TABLA" \
             -H "apikey: $SUPABASE_KEY" \
             -H "Authorization: Bearer $SUPABASE_KEY" \
             -H "Content-Type: application/json" \
@@ -92,7 +39,7 @@ EOF
           cat /tmp/response.json
 
           if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
-            echo "OK insertado en $TABLE"
+            echo "OK insertado en $TABLA"
           else
             echo "ERROR $HTTP_CODE"
             exit 1
@@ -100,8 +47,8 @@ EOF
 
       - name: Archivar sesion
         run: |
-          FECHA=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d['fecha'])")
-          TIPO=$(python3 -c "import json; d=json.load(open('sesiones/nueva_sesion.json')); print(d.get('tipo','').lower())")
+          FECHA=$(python3 -c "import json; print(json.load(open('sesiones/nueva_sesion.json'))['fecha'])")
+          TIPO=$(python3 -c "import json; print(json.load(open('sesiones/nueva_sesion.json')).get('tipo','').lower())")
           mkdir -p sesiones/historial
           cp sesiones/nueva_sesion.json "sesiones/historial/${FECHA}_${TIPO}.json"
           git config user.name "github-actions[bot]"
