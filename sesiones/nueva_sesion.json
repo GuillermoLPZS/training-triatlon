@@ -1,14 +1,16 @@
 {
-  "tipo": "bici",
-  "fecha": "2026-06-19",
-  "objetivo": "Bici Z2 rodillo sustitución natación",
-  "fatiga_previa": "Alta (carga acumulada día anterior E7)",
-  "duracion_min": 40,
-  "distancia_km": 17.5,
-  "velocidad_media": 26.0,
-  "fc_media": 127,
-  "fc_max": 153,
-  "te_aerobico": 2.5,
-  "te_anaerobico": 0.0,
-  "notas": "Z2 rodillo. 47% Z3, 29% Z2, 20% Z1. Stamina 99→89%. Sensación muy fuerte pese a carga. Esfuerzo percibido 3/10. Sesión bonus — tocaba descanso por compromiso laboral."
+  "tipo": "natacion",
+  "fecha": "2026-06-21",
+  "objetivo": "Series crol rapido + braza",
+  "fatiga_previa": "Alta (fin de semana desde jueves de mucho movimiento y alta demanda energetica)",
+  "duracion_min": 29,
+  "distancia_m": 1000,
+  "ritmo_medio": 2.0,
+  "ritmo_optimo": 0.82,
+  "fc_media": 141,
+  "fc_max": 168,
+  "brazadas_largo": 11.0,
+  "te_aerobico": 3.0,
+  "te_anaerobico": 2.4,
+  "notas": "Series 50@1:50/100 crol + braza para no sobrecargar. Swolf 41. 33% Z3, 32% Z2, 30% Z1. TE anaerobico 2.4 (alto para natacion). Sensacion de trabajo duro pese a buscar sesion facil. Calorias 449."
 }
