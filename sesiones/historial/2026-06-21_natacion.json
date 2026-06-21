@@ -1,0 +1,16 @@
+{
+  "tipo": "natacion",
+  "fecha": "2026-06-21",
+  "objetivo": "Series crol rapido + braza",
+  "fatiga_previa": "Alta (fin de semana desde jueves de mucho movimiento y alta demanda energetica)",
+  "duracion_min": 29,
+  "distancia_m": 1000,
+  "ritmo_medio": 2.0,
+  "ritmo_optimo": 0.82,
+  "fc_media": 141,
+  "fc_max": 168,
+  "brazadas_largo": 11.0,
+  "te_aerobico": 3.0,
+  "te_anaerobico": 2.4,
+  "notas": "Series 50@1:50/100 crol + braza para no sobrecargar. Swolf 41. 33% Z3, 32% Z2, 30% Z1. TE anaerobico 2.4 (alto para natacion). Sensacion de trabajo duro pese a buscar sesion facil. Calorias 449."
+}
