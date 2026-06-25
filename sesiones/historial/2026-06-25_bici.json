@@ -1,0 +1,16 @@
+{
+  "tipo": "bici",
+  "fecha": "2026-06-25",
+  "objetivo": "Brick S4 — fase bici Z3",
+  "fatiga_previa": "Buena (descanso martes y miercoles)",
+  "duracion_min": 40,
+  "distancia_km": 20.05,
+  "velocidad_media": 30.1,
+  "fc_media": 139,
+  "fc_max": 157,
+  "potencia_media": 469,
+  "potencia_max": 545,
+  "te_aerobico": 3.2,
+  "te_anaerobico": 0.0,
+  "notas": "Fase 1 de brick en sala. 57% Z3, 19% Z2, 17% Z4. Stamina 99→83. Sensaciones buenas, potencia 469W media sostenida."
+}
