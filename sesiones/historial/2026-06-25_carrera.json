@@ -1,0 +1,23 @@
+{
+  "tipo": "carrera",
+  "fecha": "2026-06-25",
+  "objetivo": "Brick S4 — fase carrera post-bici",
+  "fatiga_previa": "Piernas de bici (40 min Z3 previo)",
+  "duracion_min": 15,
+  "distancia_km": 3.24,
+  "ritmo_medio": 4.63,
+  "ritmo_optimo": 4.15,
+  "fc_media": 163,
+  "fc_max": 171,
+  "potencia_media": 469,
+  "potencia_max": 545,
+  "cadencia": 160,
+  "oscilacion_cm": 10.2,
+  "contacto_ms": 272,
+  "ratio_vertical": 7.5,
+  "zancada_m": 1.36,
+  "stamina_final": 75,
+  "te_aerobico": 3.6,
+  "te_anaerobico": 0.2,
+  "notas": "Fase carrera del brick en cinta. Ritmo 4:38/km medio mejor que objetivo 4:40. 61% Z4, 27% Z3. Cadencia 160 ppm — record en sesion con piernas cargadas. Contacto 272ms minimo historico. Zancada 1.36m maximo historico. FC max 171 ppm controlada."
+}
