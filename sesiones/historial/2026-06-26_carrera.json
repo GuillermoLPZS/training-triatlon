@@ -1,0 +1,23 @@
+{
+  "tipo": "carrera",
+  "fecha": "2026-06-26",
+  "objetivo": "Test 4:40/km + series al fallo",
+  "fatiga_previa": "Buena (descanso relativo tras brick ayer)",
+  "duracion_min": 38,
+  "distancia_km": 8.02,
+  "ritmo_medio": 4.82,
+  "ritmo_optimo": 3.85,
+  "fc_media": 164,
+  "fc_max": 180,
+  "potencia_media": 476,
+  "potencia_max": 666,
+  "cadencia": 153,
+  "oscilacion_cm": 10.3,
+  "contacto_ms": 283,
+  "ratio_vertical": 7.7,
+  "zancada_m": 1.35,
+  "stamina_final": 66,
+  "te_aerobico": 4.1,
+  "te_anaerobico": 0.4,
+  "notas": "Test 4:40 + series rapidas al fallo. Exterior Barcelona 29C. 8min cal Z2 + bloque principal + series repetidas hasta fallo. 68% Z4, 8% Z3. FC max 180 ppm. Condicion rendimiento +3/+4 en bloque central. TE aer 4.1 maximo del mes."
+}
