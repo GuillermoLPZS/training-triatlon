@@ -1,23 +1,5 @@
 {
-  "tipo": "carrera",
-  "fecha": "2026-06-26",
-  "objetivo": "Test 4:40/km + series al fallo",
-  "fatiga_previa": "Buena (descanso relativo tras brick ayer)",
-  "duracion_min": 38,
-  "distancia_km": 8.02,
-  "ritmo_medio": 4.82,
-  "ritmo_optimo": 4.45,
-  "fc_media": 164,
-  "fc_max": 180,
-  "potencia_media": 476,
-  "potencia_max": 666,
-  "cadencia": 153,
-  "oscilacion_cm": 10.3,
-  "contacto_ms": 283,
-  "ratio_vertical": 7.7,
-  "zancada_m": 1.35,
-  "stamina_final": 66,
-  "te_aerobico": 4.1,
-  "te_anaerobico": 0.4,
-  "notas": "TEST SUB-4:40 SUPERADO. Exterior Barcelona 29C. Cal 5:29/km | BLOQUE1 12min 4:27/km (GAP 4:24) | Series 4:25/4:27/4:28 | Rec | BLOQUE2 4:32/km | Rec | BLOQUE3 4:32/km (GAP 4:40). Umbral real estimado ~4:25-4:30/km. Objetivo Bilbao actualizado a sub-4:30/km. Cond.rendimiento +3/+4 en bloque central. TE aer 4.1 maximo del mes."
+  "_action": "delete",
+  "_table": "carrera",
+  "_id": 10
 }
