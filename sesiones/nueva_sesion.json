@@ -6,7 +6,7 @@
   "duracion_min": 38,
   "distancia_km": 8.02,
   "ritmo_medio": 4.82,
-  "ritmo_optimo": 3.85,
+  "ritmo_optimo": 4.45,
   "fc_media": 164,
   "fc_max": 180,
   "potencia_media": 476,
@@ -19,5 +19,5 @@
   "stamina_final": 66,
   "te_aerobico": 4.1,
   "te_anaerobico": 0.4,
-  "notas": "Test 4:40 + series rapidas al fallo. Exterior Barcelona 29C. 8min cal Z2 + bloque principal + series repetidas hasta fallo. 68% Z4, 8% Z3. FC max 180 ppm. Condicion rendimiento +3/+4 en bloque central. TE aer 4.1 maximo del mes."
+  "notas": "TEST SUB-4:40 SUPERADO. Exterior Barcelona 29C. Cal 5:29/km | BLOQUE1 12min 4:27/km (GAP 4:24) | Series 4:25/4:27/4:28 | Rec | BLOQUE2 4:32/km | Rec | BLOQUE3 4:32/km (GAP 4:40). Umbral real estimado ~4:25-4:30/km. Objetivo Bilbao actualizado a sub-4:30/km. Cond.rendimiento +3/+4 en bloque central. TE aer 4.1 maximo del mes."
 }
