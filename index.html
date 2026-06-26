@@ -302,6 +302,7 @@ canvas.scatter{width:100%;height:100%}
 .plan-card.brick{background:#0a1e0a;border-top-color:var(--brick)}
 .plan-card.rest{background:#0c1520;border-top-color:#2a3a4a}
 .plan-card.travel{background:#100f20;border-top-color:var(--travel)}
+.plan-card.race{background:#1a1a0a;border-top-color:#f7c948}
 .plan-day{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--muted)}
 .plan-date{font-size:.65rem;color:#7a9ab8;margin:2px 0 5px}
 .plan-badge{display:inline-block;border-radius:3px;padding:1px 5px;font-size:.58rem;font-weight:700;margin-bottom:4px}
@@ -511,7 +512,11 @@ canvas.scatter{width:100%;height:100%}
 
   <!-- ══ TAB: PLAN ═══════════════════════════════════════════════════════ -->
   <div class="tab-panel" id="tab-plan">
-    <div class="section-label">Plan junio 2026</div>
+    <div class="section-label" id="planMonthLabel">Plan junio 2026</div>
+    <div style="display:flex;gap:8px;margin-bottom:10px">
+      <button class="btn" id="btnJun" onclick="setMonth('jun')" style="font-size:.72rem;padding:5px 14px;background:#1F3864;border:none;color:#fff;border-radius:8px;cursor:pointer">Junio</button>
+      <button class="btn" id="btnJul" onclick="setMonth('jul')" style="font-size:.72rem;padding:5px 14px;background:#1a2535;border:1px solid var(--border);color:var(--muted);border-radius:8px;cursor:pointer">Julio</button>
+    </div>
     <div class="plan-shell">
       <div class="plan-nav">
         <button onclick="prevWeek()">◀</button>
@@ -1127,18 +1132,41 @@ const planWeeks=[
   {label:'Semana 3 · 16–20 Jun ⚠️ Ajustada',alert:'⚠️ Compromisos laborales — solo disponibles martes y miércoles.',focus:'🟡 Mantenimiento mínimo — 1 tempo corto + 1 natación técnica.',days:[{d:'Lun',dt:'16 Jun',type:'travel',title:'Compromiso laboral',detail:'Fuera · Descanso activo',dur:'—'},{d:'Mar',dt:'17 Jun',type:'run',title:'Tempo corto',detail:"35 min · 15' cal + 15' a 4:45/km",dur:'35 min'},{d:'Mié',dt:'18 Jun',type:'swim',title:'Natación técnica',detail:'30 min · Catch-up drill · <12 braz/largo',dur:'30 min'},{d:'Jue',dt:'19 Jun',type:'travel',title:'Compromiso laboral',detail:'Fuera',dur:'—'},{d:'Vie',dt:'20 Jun',type:'travel',title:'Compromiso laboral',detail:'Fuera',dur:'—'}],sum:{s:2,run:'35 min',bike:'—',swim:'30 min',load:'Baja'}},
   {label:'Semana 4 · 23–27 Jun ⚠️ Ajustada',alert:'⚠️ Viaje martes y miércoles — disponibles lunes, jueves y viernes.',focus:'🟠 Semana clave — Brick + test sub-4:40/km el viernes 27.',days:[{d:'Lun',dt:'23 Jun',type:'run',title:'Rodaje Z2 largo',detail:'50 min · FC <158 ppm · Metrónomo 165',dur:'50 min'},{d:'Mar',dt:'24 Jun',type:'travel',title:'Viaje',detail:'Fuera',dur:'—'},{d:'Mié',dt:'25 Jun',type:'travel',title:'Viaje',detail:'Fuera',dur:'—'},{d:'Jue',dt:'26 Jun',type:'brick',title:'Brick Bici + Carrera',detail:"Bici 40 min Z3 → Carrera 15' a 4:40-4:45/km",dur:'60 min'},{d:'Vie',dt:'27 Jun',type:'run',title:'⚡ Test 4:40/km',detail:"35 min · 15' cal + 10-12' a 4:40/km",dur:'35 min'}],sum:{s:3,run:'100 min',bike:'40 min',swim:'—',load:'Media-Alta'}},
 ];
+
+const planWeeksJul=[
+  {label:'S1 · 30 Jun–4 Jul · PREVIA BERGA',alert:null,focus:'🟠 Semana de activación pre-carrera — volumen bajo, calidad alta. Repaso de las tres disciplinas con intensidad controlada. El sábado 5 es la carrera.',days:[{d:'Lun',dt:'30 Jun',type:'swim',title:'Natación técnica 750m',detail:'30 min · 3×250m continuos\nRitmo cómodo · Simular segmento',dur:'30 min'},{d:'Mar',dt:'1 Jul',type:'run',title:'Rodaje suave + strides',detail:"25 min Z2 · FC <152 ppm\n4×100m a 4:30/km · Metrónomo 165",dur:'30 min'},{d:'Mié',dt:'2 Jul',type:'bike',title:'Bici activación Z2',detail:'30 min rodillo · Z2 suave\nCadencia 90 rpm · Sin intensidad',dur:'30 min'},{d:'Jue',dt:'3 Jul',type:'rest',title:'Descanso activo',detail:'Movilidad 15 min\nHidratación y nutrición',dur:'15 min'},{d:'Vie',dt:'4 Jul',type:'rest',title:'Descanso total',detail:'Preparar material carrera\nRepasar transiciones T1/T2',dur:'Descanso'}],sum:{s:3,run:'30 min',bike:'30 min',swim:'30 min',load:'Muy baja · Tapering'}},
+  {label:'S2 · 5–11 Jul · BERGA + RECUPERACIÓN 🏁',alert:null,focus:'🏁 SÁBADO 5 JUL — 100x100 Tri de Berga (750m·20km·5km). Post-carrera: recuperación activa y vuelta progresiva desde el lunes.',days:[{d:'Sáb',dt:'5 Jul',type:'race',title:'🏁 100x100 Tri de Berga',detail:'750m natación · 20km bici · 5km carrera\nPrimer triatlón temporada\nObjetivo: terminar fuerte y disfrutar',dur:'~75-90 min'},{d:'Dom',dt:'6 Jul',type:'rest',title:'Recuperación activa',detail:'Paseo suave 30 min\nEstiramientos · Nutrir y descansar',dur:'Suave'},{d:'Lun',dt:'7 Jul',type:'swim',title:'Natación recuperación',detail:'25 min · Ritmo muy suave\nSin series · Lavar piernas y hombros',dur:'25 min'},{d:'Mar',dt:'8 Jul',type:'run',title:'Rodaje suave Z1-Z2',detail:'30 min · FC <148 ppm\nEscuchar sensaciones post-carrera',dur:'30 min'},{d:'Mié',dt:'9 Jul',type:'bike',title:'Bici fondo suave',detail:'40 min Z2 · Cadencia 88-90 rpm\nNo superar 148 ppm',dur:'40 min'}],sum:{s:4,run:'30 min + 5km carrera',bike:'40 min + 20km carrera',swim:'25 min + 750m carrera',load:'Media (incluye carrera)'}},
+  {label:'S3 · 10–14 Jul · CALIDAD FINAL',alert:null,focus:'🔵 Última semana de entrenamiento antes del parón. Tempo en carrera + brick corto. Cerrar julio con buenas sensaciones.',days:[{d:'Jue',dt:'10 Jul',type:'run',title:'Tempo umbral',detail:"38 min · 10' cal + 18' a 4:30-4:35/km\nFC ~168-172 ppm · Consolidar ritmo Bilbao",dur:'38 min'},{d:'Vie',dt:'11 Jul',type:'swim',title:'Natación series',detail:'35 min · 6×100m + 2×200m\nFoco: ritmo constante · <12 braz/largo',dur:'35 min'},{d:'Sáb',dt:'12 Jul',type:'brick',title:'Brick corto',detail:"Bici 30 min Z3 → transición\nCarrera 12' a 4:30/km",dur:'45 min'},{d:'Dom',dt:'13 Jul',type:'rest',title:'Descanso',detail:'Recuperación post-brick\nMovilidad opcional',dur:'Descanso'},{d:'Lun',dt:'14 Jul',type:'run',title:'Rodaje Z2 largo',detail:'45 min · FC <158 ppm\nCadencia 165+ ppm · Último rodaje',dur:'45 min'}],sum:{s:4,run:'83 min',bike:'30 min',swim:'35 min',load:'Media-Alta'}},
+  {label:'S4 · 15–16 Jul · CIERRE + PARÓN ⏸',alert:'⏸ El 16 de julio empieza el parón hasta principios de agosto.',focus:'⏸ Cierre del bloque. Dos sesiones suaves para cerrar bien el ciclo — no forzar, conservar energía de cara al parón.',days:[{d:'Mar',dt:'15 Jul',type:'swim',title:'Natación suave cierre',detail:'25 min · Técnica libre\nSin series · Última sesión natación',dur:'25 min'},{d:'Mié',dt:'16 Jul',type:'run',title:'Rodaje suave despedida',detail:'30 min · Z1-Z2 muy suave\nFC <148 ppm · Cerrar con buenas piernas',dur:'30 min'},{d:'Jue',dt:'17 Jul',type:'travel',title:'⏸ Inicio parón',detail:'Hasta principios de agosto\nMantenimiento con caminatas',dur:'—'},{d:'Vie',dt:'18 Jul',type:'travel',title:'Parón activo',detail:'10.000 pasos/día objetivo\nHidratación y alimentación',dur:'—'},{d:'Sáb',dt:'19 Jul',type:'travel',title:'Parón activo',detail:'Actividad libre no estructurada\nNatación vacacional si hay oportunidad',dur:'—'}],sum:{s:2,run:'30 min',bike:'—',swim:'25 min',load:'Muy baja · Cierre'}},
+];
+
+const badgeStylesExtra={race:'background:#3a3000;color:#f7c948'};
+
 let curWeek=0;
+let curMonth='jun';
+
+function setMonth(m){
+  curMonth=m;curWeek=0;
+  document.getElementById('planMonthLabel').textContent=m==='jun'?'Plan junio 2026':'Plan julio 2026';
+  document.getElementById('btnJun').style.cssText='font-size:.72rem;padding:5px 14px;border:none;color:#fff;border-radius:8px;cursor:pointer;background:'+(m==='jun'?'#1F3864':'#1a2535');
+  document.getElementById('btnJul').style.cssText='font-size:.72rem;padding:5px 14px;border-radius:8px;cursor:pointer;background:'+(m==='jul'?'#1F3864':'#1a2535')+';border:1px solid var(--border);color:'+(m==='jul'?'#fff':'var(--muted)');
+  renderPlan();
+}
+
 function renderPlan(){
-  const w=planWeeks[curWeek];
+  const weeks=curMonth==='jun'?planWeeks:planWeeksJul;
+  const w=weeks[curWeek];
   document.getElementById('planLabel').textContent=w.label;
-  document.getElementById('planGrid').innerHTML=w.days.map(d=>`<div class="plan-card ${d.type}"><div class="plan-day">${d.d}</div><div class="plan-date">${d.dt}</div><div class="plan-badge" style="${badgeStyles[d.type]}">${badgeLabels[d.type]}</div><div class="plan-title">${d.title}</div><div class="plan-detail">${d.detail.replace(/\n/g,'<br>')}</div><div class="plan-dur">⏱ ${d.dur}</div></div>`).join('');
+  const bs={...badgeStyles,...badgeStylesExtra};
+  const bl={...{run:'🏃 CARRERA',swim:'🏊 NATACIÓN',bike:'🚴 BICI',brick:'⚡ BRICK',rest:'😴 DESCANSO',travel:'⏸ PARÓN',race:'🏁 CARRERA'}};
+  document.getElementById('planGrid').innerHTML=w.days.map(d=>`<div class="plan-card ${d.type}"><div class="plan-day">${d.d}</div><div class="plan-date">${d.dt}</div><div class="plan-badge" style="${bs[d.type]||bs.rest}">${bl[d.type]||d.type.toUpperCase()}</div><div class="plan-title">${d.title}</div><div class="plan-detail">${d.detail.replace(/\n/g,'<br>')}</div><div class="plan-dur">⏱ ${d.dur}</div></div>`).join('');
   document.getElementById('planAlert').innerHTML=w.alert?`<div class="plan-alert">${w.alert}</div>`:'';
   document.getElementById('planFocus').innerHTML=`<div class="plan-focus">${w.focus}</div>`;
   const s=w.sum;
   document.getElementById('planSummary').innerHTML=`<div>Sesiones:<span>${s.s}</span></div><div>🏃<span>${s.run}</span></div><div>🚴<span>${s.bike}</span></div><div>🏊<span>${s.swim}</span></div><div>Carga:<span>${s.load}</span></div>`;
 }
 function prevWeek(){if(curWeek>0){curWeek--;renderPlan();}}
-function nextWeek(){if(curWeek<planWeeks.length-1){curWeek++;renderPlan();}}
+function nextWeek(){const weeks=curMonth==='jun'?planWeeks:planWeeksJul;if(curWeek<weeks.length-1){curWeek++;renderPlan();}}
 
 // ══════════════════════════════════════════════════════════════════════════════
 // INIT
