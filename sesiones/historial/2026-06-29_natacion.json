@@ -1,0 +1,16 @@
+{
+  "tipo": "natacion",
+  "fecha": "2026-06-29",
+  "objetivo": "4x250m pre-Berga · ultimo con pull buoy",
+  "fatiga_previa": "Buena (dia despues del test E10)",
+  "duracion_min": 27,
+  "distancia_m": 1000,
+  "ritmo_medio": 2.25,
+  "ritmo_optimo": 1.92,
+  "fc_media": 135,
+  "fc_max": 159,
+  "brazadas_largo": 11.6,
+  "te_aerobico": 2.7,
+  "te_anaerobico": 0.7,
+  "notas": "4x250m bloques. Ultimo 250m con pull buoy. Ritmo 2:15/100m media, optimo 1:55. Swolf 45. 38% Z2, 36% Z1, 22% Z3. FC controlada. Sesion de volumen pre-Berga."
+}
