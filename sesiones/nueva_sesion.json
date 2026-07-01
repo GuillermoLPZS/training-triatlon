@@ -1,13 +1,13 @@
 {
   "tipo": "otros",
-  "fecha": "2026-06-30",
-  "deporte": "Padel",
-  "objetivo": "Clase padel L'Hospitalet",
-  "duracion_min": 86,
-  "fc_media": 116,
-  "fc_max": 170,
-  "calorias": 733,
-  "te_aerobico": 2.1,
-  "te_anaerobico": 2.1,
-  "notas": "Clase padel vespertina. FC media 116 ppm, picos 170 ppm en intercambios. TE anaerobico 2.1 por esfuerzos explosivos. Semana tapering pre-Berga."
+  "fecha": "2026-07-01",
+  "deporte": "Baloncesto",
+  "objetivo": "Pachanga Sant Joan Despi",
+  "duracion_min": 73,
+  "fc_media": 134,
+  "fc_max": 183,
+  "calorias": 891,
+  "te_aerobico": 3.4,
+  "te_anaerobico": 3.3,
+  "notas": "Partido baloncesto exterior 27C. FC max 183 ppm. TE anaerobico 3.3 alto por esfuerzos explosivos repetidos. 39% Z1, 16% Z2, 15% Z3, 16% Z4, 2% Z5. Semana tapering pre-Berga (domingo 5 jul)."
 }
