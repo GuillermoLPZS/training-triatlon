@@ -1,0 +1,14 @@
+{
+  "tipo": "bici",
+  "fecha": "2026-07-02",
+  "objetivo": "Recuperacion post-basket pre-Berga",
+  "fatiga_previa": "Piernas cargadas tras pachanga basket ayer",
+  "duracion_min": 31,
+  "distancia_km": 10.0,
+  "velocidad_media": 19.4,
+  "fc_media": 101,
+  "fc_max": 115,
+  "te_aerobico": 0.5,
+  "te_anaerobico": 0.0,
+  "notas": "Recuperacion activa muy suave post-basket. 89% Z1, FC nunca supero 115 ppm. Stamina 95->94%, practicamente sin desgaste. Beneficio principal: Recuperacion (aerobica baja). Ideal 3 dias antes de Berga."
+}
