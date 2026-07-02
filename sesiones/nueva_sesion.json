@@ -1,13 +1,14 @@
 {
-  "tipo": "otros",
-  "fecha": "2026-07-01",
-  "deporte": "Baloncesto",
-  "objetivo": "Pachanga Sant Joan Despi",
-  "duracion_min": 73,
-  "fc_media": 134,
-  "fc_max": 183,
-  "calorias": 891,
-  "te_aerobico": 3.4,
-  "te_anaerobico": 3.3,
-  "notas": "Partido baloncesto exterior 27C. FC max 183 ppm. TE anaerobico 3.3 alto por esfuerzos explosivos repetidos. 39% Z1, 16% Z2, 15% Z3, 16% Z4, 2% Z5. Semana tapering pre-Berga (domingo 5 jul)."
+  "tipo": "bici",
+  "fecha": "2026-07-02",
+  "objetivo": "Recuperacion post-basket pre-Berga",
+  "fatiga_previa": "Piernas cargadas tras pachanga basket ayer",
+  "duracion_min": 31,
+  "distancia_km": 10.0,
+  "velocidad_media": 19.4,
+  "fc_media": 101,
+  "fc_max": 115,
+  "te_aerobico": 0.5,
+  "te_anaerobico": 0.0,
+  "notas": "Recuperacion activa muy suave post-basket. 89% Z1, FC nunca supero 115 ppm. Stamina 95->94%, practicamente sin desgaste. Beneficio principal: Recuperacion (aerobica baja). Ideal 3 dias antes de Berga."
 }
