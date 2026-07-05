@@ -1,14 +1,16 @@
 {
-  "tipo": "bici",
-  "fecha": "2026-07-02",
-  "objetivo": "Bici activacion muy suave post-basket",
-  "fatiga_previa": "Piernas cargadas (basket dia anterior)",
-  "duracion_min": 31,
-  "distancia_km": 10.0,
-  "velocidad_media": 19.4,
-  "fc_media": 101,
-  "fc_max": 115,
-  "te_aerobico": 0.5,
+  "tipo": "natacion",
+  "fecha": "2026-07-05",
+  "objetivo": "100x100 Tri de Berga - Natacion (750m aguas abiertas)",
+  "fatiga_previa": "Dia de carrera - fresco, tapering completado",
+  "duracion_min": 17.6,
+  "distancia_m": 793,
+  "ritmo_medio": 2.22,
+  "fc_media": 118,
+  "fc_max": 136,
+  "brazadas_largo": 27,
+  "estil": "crol",
+  "te_aerobico": 1.2,
   "te_anaerobico": 0.0,
-  "notas": "Recuperacion activa post-basket. 89% Z1, FC nunca supero 115 ppm. Beneficio principal: Recuperacion (aerobica baja). Stamina 95->94%, practicamente sin desgaste. Ejecucion perfecta de sesion de descarga pre-Berga."
+  "notas": "Segmento de natacion del Tri de Berga (sprint). 793m en aguas abiertas, 17:36, ritmo 2:13/100m. FC muy controlada: 95% del tiempo en Z1 (100-131 ppm), solo 2% en Z2. FC media 118, max 136. Cadencia de brazada media 27 ppm (max 44). Salida conservadora tal y como estaba previsto, guardando piernas para bici y carrera."
 }
