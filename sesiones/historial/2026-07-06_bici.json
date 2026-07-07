@@ -1,0 +1,14 @@
+{
+  "tipo": "bici",
+  "fecha": "2026-07-06",
+  "objetivo": "Bici recuperacion en sala - sustituye natacion (sesion miercoles) por disponibilidad",
+  "fatiga_previa": "Post Tri de Berga (dia despues de la carrera)",
+  "duracion_min": 40,
+  "distancia_km": 18.50,
+  "velocidad_media": 27.6,
+  "fc_media": 118,
+  "fc_max": 132,
+  "te_aerobico": 1.7,
+  "te_anaerobico": 0.0,
+  "notas": "Ciclismo en sala de recuperacion activa, dia despues del Tri de Berga. Sustituye a la sesion de natacion prevista para el miercoles por falta de disponibilidad. 18.5km en 40:13 a 27.6 km/h media. FC muy controlada: 71% del tiempo en Z2 (115-133 ppm), 19% en Z1, sin entrar nunca en Z3+. Stamina 95%->91%, practicamente sin desgaste. Beneficio principal: Recuperacion (aerobica baja). Ejecucion correcta de sesion de descarga tras el triatlon."
+}
