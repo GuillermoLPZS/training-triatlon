@@ -1,0 +1,14 @@
+{
+  "tipo": "bici",
+  "fecha": "2026-07-12",
+  "objetivo": "Brick - fase bici umbral (previa a T2 carrera)",
+  "fatiga_previa": "Buena, dia de brick",
+  "duracion_min": 38,
+  "distancia_km": 20.00,
+  "velocidad_media": 31.9,
+  "fc_media": 160,
+  "fc_max": 174,
+  "te_aerobico": 4.0,
+  "te_anaerobico": 0.0,
+  "notas": "Fase bici de un brick en sala. 20km en 37:34 a 31.9 km/h media. FC media 160, muy concentrada en Z4 umbral (153-171ppm): 76% del tiempo, con 17% en Z3 y solo 2% en Z5. Stamina 100%->69%. Buena intensidad sostenida de cara a simular el esfuerzo de bici en carrera, antes de encadenar con la carrera T2."
+}
