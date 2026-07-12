@@ -1,0 +1,23 @@
+{
+  "tipo": "carrera",
+  "fecha": "2026-07-12",
+  "objetivo": "Brick - fase carrera T2 (post bici umbral)",
+  "fatiga_previa": "Piernas cargadas tras 20km de bici en Z4",
+  "duracion_min": 24,
+  "distancia_km": 5.04,
+  "ritmo_medio": 4.75,
+  "ritmo_optimo": 4.30,
+  "fc_media": 171,
+  "fc_max": 178,
+  "potencia_media": 456,
+  "potencia_max": 543,
+  "cadencia": 160,
+  "oscilacion_cm": 10.0,
+  "contacto_ms": 274,
+  "ratio_vertical": 7.6,
+  "zancada_m": 1.32,
+  "stamina_final": 54,
+  "te_aerobico": 4.7,
+  "te_anaerobico": 0.8,
+  "notas": "Fase carrera (T2) de un brick, justo tras 20km de bici en Z4. 5.04km en 23:57, ritmo medio 4:45/km (optimo 4:18/km). Splits muy estables pese a la fatiga previa: 4:38, 4:42, 4:43, 4:44 tras un primer km de adaptacion a 5:00. FC media 171 con 83% del tiempo en Z4 umbral y 2% en Z5 - muy exigente con las piernas ya cargadas. Potencia media 456W (max 543W), cadencia 160 (max 167). Stamina arranco en 68% (heredada de la bici) y cerro en 54%. Excelente capacidad de sostener ritmo umbral en transicion, buena senal de cara a los objetivos de medio maraton."
+}
