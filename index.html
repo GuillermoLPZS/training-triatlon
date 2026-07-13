@@ -434,7 +434,7 @@ canvas.scatter{width:100%;height:100%}
     <!-- HEATMAP -->
     <div class="section-label">📅 Calendario de sesiones</div>
     <div class="heatmap-wrap">
-      <div class="heatmap-title">Mayo — Junio 2026</div>
+      <div class="heatmap-title" id="heatmapTitle"></div>
       <div class="heatmap-months" id="heatmapEl"></div>
       <div class="heatmap-legend">
         <div class="heat-leg"><div class="heat-dot" style="background:var(--run)"></div>Carrera</div>
@@ -789,6 +789,7 @@ function renderHeatmap(run,swim,bike,otros){
     {year:now.getFullYear(),month:now.getMonth(),label:`${monthNames[now.getMonth()]} ${now.getFullYear()}`},
   ];
   const today=new Date().toISOString().split('T')[0];
+  document.getElementById('heatmapTitle').textContent=`${months[0].label} — ${months[1].label}`;
 
   document.getElementById('heatmapEl').innerHTML=months.map(({year,month,label})=>{
     const daysInMonth=new Date(year,month+1,0).getDate();
