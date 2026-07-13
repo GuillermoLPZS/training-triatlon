@@ -191,6 +191,9 @@ canvas.scatter{width:100%;height:100%}
 .heatmap-month{}
 .heatmap-month-label{font-size:.65rem;color:var(--muted);margin-bottom:6px;font-weight:600}
 .heatmap-days{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.heatmap-days-compact{gap:2px;max-width:220px}
+.heatmap-months{display:flex;flex-direction:column;gap:14px}
+@media(min-width:600px){.heatmap-months{flex-direction:row;gap:24px}.heatmap-month{flex:1;max-width:240px}}
 .hday{
   aspect-ratio:1;border-radius:3px;background:var(--border);
   cursor:pointer;position:relative;transition:transform .15s;
@@ -778,7 +781,13 @@ function renderHeatmap(run,swim,bike,otros){
   const add=(arr,tipo)=>arr.forEach(r=>{if(!map[r.fecha])map[r.fecha]=[];map[r.fecha].push(tipo);});
   add(run,'run');add(swim,'swim');add(bike,'bike');add(otros,'other');
 
-  const months=[{year:2026,month:4,label:'Mayo 2026'},{year:2026,month:5,label:'Junio 2026'}];
+  const now=new Date();
+  const monthNames=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const prevDate=new Date(now.getFullYear(),now.getMonth()-1,1);
+  const months=[
+    {year:prevDate.getFullYear(),month:prevDate.getMonth(),label:`${monthNames[prevDate.getMonth()]} ${prevDate.getFullYear()}`},
+    {year:now.getFullYear(),month:now.getMonth(),label:`${monthNames[now.getMonth()]} ${now.getFullYear()}`},
+  ];
   const today=new Date().toISOString().split('T')[0];
 
   document.getElementById('heatmapEl').innerHTML=months.map(({year,month,label})=>{
@@ -797,7 +806,7 @@ function renderHeatmap(run,swim,bike,otros){
       const isToday=key===today?'today':'';
       days+=`<div class="hday ${cls} ${isToday}">${tip?`<div class="tip">${key} · ${tip}</div>`:''}</div>`;
     }
-    return`<div class="heatmap-month"><div class="heatmap-month-label">${label}</div><div class="heatmap-days" style="grid-template-columns:repeat(7,1fr)">${days}</div></div>`;
+    return`<div class="heatmap-month"><div class="heatmap-month-label">${label}</div><div class="heatmap-days heatmap-days-compact">${days}</div></div>`;
   }).join('');
 }
 
