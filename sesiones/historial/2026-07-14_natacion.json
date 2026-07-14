@@ -1,0 +1,16 @@
+{
+  "tipo": "natacion",
+  "fecha": "2026-07-14",
+  "objetivo": "Series continuas post-Berga",
+  "fatiga_previa": "Buena, sin fatiga residual",
+  "duracion_min": 21,
+  "distancia_m": 1025,
+  "ritmo_medio": 1.95,
+  "fc_media": 141,
+  "fc_max": 160,
+  "brazadas_largo": 11.2,
+  "swolf": 40,
+  "te_aerobico": 2.7,
+  "te_anaerobico": 0.6,
+  "notas": "1025m en 21:10, ritmo medio 1:57/100m - NUEVO RECORD ABSOLUTO, primera vez bajo 2:00/100m. Progresion desde N1 (2 jun, 2:27/100m): -30s/100m en 6 semanas. SWOLF 40, el mas bajo hasta la fecha (mejor eficiencia real, no solo velocidad). Brazadas 11.2/largo. FC muy controlada (141 media/160 max) para este ritmo - buena senal de forma aerobica. 3 bloques de ~400m con FC subiendo progresivamente y recuperando bien entre bloques."
+}
